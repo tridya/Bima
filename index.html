@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html lang="id">
-<!-- python3 -m http.server 8080 -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIMA PPDB — Pilih Konsep Desain | Tujuh Sembilan</title>
-    <meta name="description"
-        content="Pilih variasi konsep desain landing page platform BIMA PPDB untuk sekolah Anda. Dikembangkan oleh PT Tujuh Sembilan.">
+    <meta name="description" content="Pilih konsep desain landing page BIMA Digital PPDB Platform by Tujuh Sembilan.">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
             --primary: #007BD6;
-            --primary-dark: #005FA5;
-            --primary-light: #E3F1FB;
+            --primary-dark: #0063AE;
             --secondary: #36A654;
-            --secondary-light: #E9F7EE;
             --accent: #F05D52;
-            --accent-light: #FDEEEC;
-            --yellow: #F5C842;
-            --yellow-light: #FEF7E0;
             --bg: #0F172A;
-            --bg-card: rgba(30, 41, 59, 0.7);
-            --ink: #F8FAFC;
-            --muted: #94A3B8;
+            --card-bg: rgba(30, 41, 59, 0.7);
             --line: rgba(255, 255, 255, 0.1);
-            --radius: 24px;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
             --font: 'Plus Jakarta Sans', sans-serif;
-            --ease: cubic-bezier(.22, 1, .36, 1);
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
             font-family: var(--font);
             background: var(--bg);
-            color: var(--ink);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -99,8 +92,11 @@
             display: grid;
             place-items: center;
             color: #fff;
-            font-size: 1.2rem;
-            box-shadow: 0 8px 20px rgba(0, 123, 214, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 123, 214, 0.35);
+        }
+
+        .logo-txt b {
+            color: #fff;
         }
 
         .logo-txt b span {
@@ -109,14 +105,13 @@
 
         .logo-txt small {
             display: block;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             color: var(--muted);
-            margin-top: -3px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: -2px;
         }
 
-        /* HERO TITLE */
+        /* HERO */
         .hero {
             text-align: center;
             padding: 60px 0 40px;
@@ -126,20 +121,18 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 99px;
             background: rgba(0, 123, 214, 0.15);
             border: 1px solid rgba(0, 123, 214, 0.3);
             color: #38BDF8;
             font-size: 0.85rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
             margin-bottom: 20px;
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -0.02em;
@@ -147,7 +140,7 @@
         }
 
         .hero h1 span {
-            background: linear-gradient(135deg, #38BDF8, #818CF8);
+            background: linear-gradient(135deg, #38BDF8, #4ADE80);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -157,52 +150,34 @@
             font-size: 1.1rem;
             max-width: 680px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
-        /* CARDS GRID */
+        /* GRID DESAIN */
         .design-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 36px;
-            margin: 30px 0 70px;
+            gap: 32px;
+            margin: 40px 0 80px;
         }
 
         .design-card {
-            background: var(--bg-card);
+            background: var(--card-bg);
             border: 1px solid var(--line);
-            border-radius: var(--radius);
-            padding: 36px;
-            backdrop-filter: blur(16px);
-            transition: all 0.35s var(--ease);
+            border-radius: 24px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.35s var(--ease);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .design-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.3s;
+            backdrop-filter: blur(12px);
         }
 
         .design-card:hover {
             transform: translateY(-8px);
             border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 30px 60px rgba(0, 123, 214, 0.25);
-        }
-
-        .design-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .card-tag {
@@ -210,24 +185,24 @@
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            border-radius: 99px;
-            font-size: 0.78rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
             margin-bottom: 20px;
-            width: fit-content;
         }
 
         .tag-1 {
             background: rgba(0, 123, 214, 0.2);
             color: #38BDF8;
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            border: 1px solid rgba(0, 123, 214, 0.3);
         }
 
         .tag-2 {
             background: rgba(54, 166, 84, 0.2);
             color: #4ADE80;
-            border: 1px solid rgba(74, 222, 128, 0.3);
+            border: 1px solid rgba(54, 166, 84, 0.3);
         }
 
         .card-preview {
@@ -236,8 +211,8 @@
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 24px;
-            position: relative;
             border: 1px solid var(--line);
+            position: relative;
         }
 
         .card-preview img {
@@ -254,49 +229,45 @@
         .card-preview-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent 60%);
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
             display: flex;
             align-items: flex-end;
             padding: 16px;
         }
 
         .card-title {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 10px;
-            color: #fff;
+            margin-bottom: 12px;
         }
 
         .card-desc {
             color: var(--muted);
-            font-size: 0.96rem;
+            font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 24px;
         }
 
         .feature-list {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
         }
 
         .feature-list li {
-            font-size: 0.9rem;
-            color: #CBD5E1;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 0.9rem;
+            color: #CBD5E1;
+            margin-bottom: 10px;
         }
 
         .feature-list li i {
             color: #38BDF8;
-            font-size: 0.85rem;
         }
 
         .btn-launch {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
@@ -357,8 +328,7 @@
                 <span class="logo-txt"><b>BIMA<span>.</span></b><small>by Tujuh Sembilan</small></span>
             </a>
             <div style="font-size:0.85rem; color:var(--muted); font-weight:600;">
-                <i class="fa-solid fa-layer-group" style="color:var(--primary); margin-right:6px;"></i> Portal Opsi
-                Desain
+                <i class="fa-solid fa-layer-group" style="color:var(--primary); margin-right:6px;"></i> Portal Opsi Desain
             </div>
         </div>
     </header>
@@ -369,28 +339,23 @@
             <div class="badge-pill">
                 <i class="fa-solid fa-sparkles"></i> Pilihan Tampilan Landing Page
             </div>
-            <h1>Pilih Konsep Desain <span>BIMA PPDB</span></h1>
-            <p>Silakan pilih variasi desain landing page platform PPDB Digital di bawah ini untuk melihat pratinjau
-                halaman lengkap secara langsung.</p>
+            <h1>Pilih Konsep Desain <span>BIMA PPDB By Daffa</span></h1>
         </section>
 
         <div class="design-grid">
             <!-- DESAIN 1 CARD -->
             <div class="design-card">
                 <div>
-                    <span class="card-tag tag-1"><i class="fa-solid fa-palette"></i> Desain 1 — Premium
-                        Glassmorphism</span>
+                    <span class="card-tag tag-1"><i class="fa-solid fa-palette"></i> Desain 1 Premium Glassmorphism</span>
                     <div class="card-preview">
-                        <img src="p1.png" alt="BIMA Design 1">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+                            alt="BIMA Design 1">
                         <div class="card-preview-overlay">
-                            <span style="font-weight:700; font-size:0.85rem; color:#fff;"><i
-                                    class="fa-solid fa-eye"></i> Multi-Page Structure</span>
+                            <span style="font-weight:700; font-size:0.85rem; color:#fff;"><i class="fa-solid fa-eye"></i> Multi-Page Structure</span>
                         </div>
                     </div>
                     <h2 class="card-title">Konsep Desain 1</h2>
-                    <p class="card-desc">Desain elegan bernuansa gradien biru lembut dengan efek glassmorphism, animasi
-                        halus, serta struktur multi-page terpisah (Beranda, Fitur, Portofolio, Testimoni, FAQ, Kontak).
-                    </p>
+                    <p class="card-desc">Desain elegan bernuansa gradien biru lembut dengan efek glassmorphism, animasi halus, serta struktur multi-page terpisah (Beranda, Fitur, Portofolio, Testimoni, FAQ, Kontak).</p>
 
                     <ul class="feature-list">
                         <li><i class="fa-solid fa-circle-check"></i> Navigasi Multi-Page Terpisah (`/ppdb2/`)</li>
@@ -399,7 +364,7 @@
                         <li><i class="fa-solid fa-circle-check"></i> Terdiri dari 6 Halaman HTML Lengkap</li>
                     </ul>
                 </div>
-                <a href="../ppdb2/index.html" class="btn-launch btn-launch-1">
+                <a href="ppdb2/index.html" class="btn-launch btn-launch-1">
                     Buka Desain 1 (PPDB 2) <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
@@ -407,27 +372,25 @@
             <!-- DESAIN 2 CARD -->
             <div class="design-card">
                 <div>
-                    <span class="card-tag tag-2"><i class="fa-solid fa-bolt"></i> Desain 2 — Modern Tech Tailwind</span>
+                    <span class="card-tag tag-2"><i class="fa-solid fa-bolt"></i> Desain 2 Modern Tech Tailwind</span>
                     <div class="card-preview">
-                        <img src="p2.png" alt="BIMA Design 2">
+                        <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80"
+                            alt="BIMA Design 2">
                         <div class="card-preview-overlay">
-                            <span style="font-weight:700; font-size:0.85rem; color:#fff;"><i
-                                    class="fa-solid fa-eye"></i> Tailwind CSS Ultra-Clean</span>
+                            <span style="font-weight:700; font-size:0.85rem; color:#fff;"><i class="fa-solid fa-eye"></i> Tailwind CSS Ultra-Clean</span>
                         </div>
                     </div>
                     <h2 class="card-title">Konsep Desain 2</h2>
-                    <p class="card-desc">Tampilan modern, ultra-clean, dan responsif berbasis Tailwind CSS dengan
-                        tipografi kontras tinggi, susunan komponen modular, serta navigasi multi-page yang intuitif.</p>
+                    <p class="card-desc">Tampilan modern, ultra-clean, dan responsif berbasis Tailwind CSS dengan tipografi kontras tinggi, susunan komponen modular, serta navigasi multi-page yang intuitif.</p>
 
                     <ul class="feature-list">
                         <li><i class="fa-solid fa-circle-check"></i> Navigasi Multi-Page Terpisah (`/ppdb3/`)</li>
                         <li><i class="fa-solid fa-circle-check"></i> Framework Tailwind CSS Ultra Fast</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Layout Modern & Minimalis Berorientasi Eksekutif
-                        </li>
+                        <li><i class="fa-solid fa-circle-check"></i> Layout Modern & Minimalis Berorientasi Eksekutif</li>
                         <li><i class="fa-solid fa-circle-check"></i> Terdiri dari 6 Halaman HTML Lengkap</li>
                     </ul>
                 </div>
-                <a href="../ppdb3/index.html" class="btn-launch btn-launch-2">
+                <a href="ppdb3/index.html" class="btn-launch btn-launch-2">
                     Buka Desain 2 (PPDB 3) <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
