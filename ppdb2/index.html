@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIMA PPDB — Platform PPDB Digital Sekolah & Yayasan | Tujuh Sembilan</title>
+    <title>BIMA PPDB Platform PPDB Digital Sekolah & Yayasan | Tujuh Sembilan</title>
     <meta name="description"
         content="BIMA menyatukan pendaftaran online, verifikasi berkas, seleksi, hingga pengumuman PPDB dalam satu platform untuk sekolah dan yayasan multi-unit.">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -28,6 +29,222 @@
         }
     </script>
     <style>
+        :root {
+            --primary: #007BD6;
+            --primary-dark: #0063AE;
+            --primary-light: #E3F1FB;
+            --secondary: #36A654;
+            --secondary-light: #E9F7EE;
+            --accent: #F05D52;
+            --accent-dark: #D8483D;
+            --accent-light: #FDEEEC;
+            --yellow: #F5C842;
+            --bg-light: #F0F8FF;
+            --ink: #0F2B46;
+            --muted: #5A6B80;
+            --radius: 20px;
+            --shadow-blue: 0 14px 34px rgba(0, 123, 214, .22);
+            --ease: cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin-inline: auto
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: .45;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbDrift 18s ease-in-out infinite;
+        }
+
+        @keyframes orbDrift {
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) scale(1)
+            }
+
+            50% {
+                transform: translate3d(26px, -30px, 0) scale(1.06)
+            }
+        }
+
+        .orb-blue {
+            background: rgba(0, 123, 214, .34)
+        }
+
+        .orb-green {
+            background: rgba(54, 166, 84, .28)
+        }
+
+        .orb-coral {
+            background: rgba(240, 93, 82, .26)
+        }
+
+        .orb-yellow {
+            background: rgba(245, 200, 66, .28)
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, .82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .78);
+            box-shadow: inset 0 1px 0 #fff, 0 8px 28px rgba(15, 43, 70, .05)
+        }
+
+        .shine {
+            position: relative
+        }
+
+        .shine::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .4), transparent 60%);
+            opacity: 0;
+            transition: opacity .5s ease;
+            pointer-events: none;
+            z-index: 1
+        }
+
+        .shine:hover::after {
+            opacity: 1
+        }
+
+        .hero {
+            position: relative;
+            padding: 64px 0 100px;
+            overflow: hidden;
+            background: #FCFCFC;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(0, 123, 214, .1) 1px, transparent 1px);
+            background-size: 26px 26px;
+            mask-image: linear-gradient(180deg, #000 60%, transparent);
+            -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent)
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(227, 241, 251, .65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, .9);
+            box-shadow: inset 0 1px 0 #fff;
+            color: var(--primary);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 99px;
+            margin-bottom: 18px
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px
+        }
+
+        .step-card {
+            position: relative;
+            padding: 30px 20px;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, .82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .78);
+            box-shadow: inset 0 1px 0 #fff, 0 8px 28px rgba(15, 43, 70, .05);
+            transition: transform .5s var(--ease), box-shadow .5s
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 44px rgba(15, 43, 70, .14), inset 0 1px 0 #fff
+        }
+
+        .step-num {
+            position: absolute;
+            top: -16px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), #5BC0F0);
+            color: #fff;
+            font-weight: 800;
+            display: grid;
+            place-items: center;
+            font-size: .9rem;
+            box-shadow: var(--shadow-blue), inset 0 1px 0 rgba(255, 255, 255, .4)
+        }
+
+        .step-card i.step-ic {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 13px;
+            display: block
+        }
+
+        .step-card b {
+            display: block;
+            font-size: .97rem;
+            margin-bottom: 7px;
+            position: relative;
+            z-index: 2
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: .82rem;
+            position: relative;
+            z-index: 2
+        }
+
+        .step-when {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: .68rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(240, 93, 82, .14);
+            border: 1px solid rgba(255, 255, 255, .6);
+            padding: 4px 11px;
+            border-radius: 99px
+        }
+
+        @media(max-width:1024px) {
+            .process-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 36px 18px
+            }
+        }
+
+        @media(max-width:680px) {
+            .process-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
         html {
             scroll-behavior: auto;
         }
@@ -38,7 +255,12 @@
         }
 
         /* GPU Hardware Acceleration & Layer Isolation */
-        section, header, footer, .reveal, [class*="group"], [class*="card"] {
+        section,
+        header,
+        footer,
+        .reveal,
+        [class*="group"],
+        [class*="card"] {
             transform: translateZ(0);
             backface-visibility: hidden;
         }
@@ -381,6 +603,1028 @@
                 animation: none !important;
             }
         }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-size: .78rem
+        }
+
+        .flow-label {
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .05em
+        }
+
+        .flow-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, .55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .8);
+            box-shadow: inset 0 1px 0 #fff;
+            padding: 6px 13px;
+            border-radius: 99px;
+            font-weight: 700;
+            color: var(--muted);
+            transition: .5s var(--ease)
+        }
+
+        .flow-chip i {
+            color: var(--primary);
+            font-size: .7rem
+        }
+
+        .flow-chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: var(--shadow-blue);
+            transform: translateY(-2px)
+        }
+
+        .flow-chip.active i {
+            color: #fff
+        }
+
+        .flow-arrow {
+            color: #B9C7D6;
+            font-size: .65rem
+        }
+
+        /* ============ HOOK + BANNER ============ */
+        .hook-combo {
+            display: grid;
+            grid-template-columns: 370px 1fr;
+            gap: 26px;
+            align-items: stretch
+        }
+
+        .hook-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .hook-item {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 17px 18px 21px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform .45s var(--ease), background .4s, border-color .4s, box-shadow .4s;
+            text-align: left;
+            background: rgba(255, 255, 255, .28);
+            border: 1px solid rgba(227, 235, 243, .7)
+        }
+
+        .hook-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            bottom: 14px;
+            width: 3px;
+            border-radius: 3px;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform .45s var(--ease)
+        }
+
+        .hook-item:hover {
+            transform: translateX(5px)
+        }
+
+        .hook-item.active {
+            background: linear-gradient(135deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .5));
+            backdrop-filter: blur(14px) saturate(170%);
+            -webkit-backdrop-filter: blur(14px) saturate(170%);
+            border-color: rgba(255, 255, 255, .85);
+            box-shadow: inset 0 1px 0 #fff, 0 12px 32px rgba(15, 43, 70, .1)
+        }
+
+        .hook-item.active::before {
+            transform: scaleY(1)
+        }
+
+        .hook-num {
+            font-size: .72rem;
+            font-weight: 800;
+            color: var(--muted);
+            background: rgba(240, 248, 255, .8);
+            border: 1px solid rgba(255, 255, 255, .8);
+            padding: 5px 10px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            transition: .45s var(--ease);
+            margin-top: 2px
+        }
+
+        .hook-item.active .hook-num {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: var(--shadow-blue)
+        }
+
+        .hook-txt {
+            flex: 1;
+            min-width: 0
+        }
+
+        .hook-txt h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: -.01em;
+            transition: color .35s
+        }
+
+        .hook-item.active .hook-txt h3 {
+            color: var(--primary)
+        }
+
+        .hook-txt p {
+            font-size: .82rem;
+            color: var(--muted);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: .5s var(--ease)
+        }
+
+        .hook-item.active .hook-txt p {
+            max-height: 64px;
+            opacity: 1;
+            margin-top: 5px
+        }
+
+        .hook-arr {
+            font-size: .8rem;
+            color: #C3D2E0;
+            margin-top: 5px;
+            transition: .4s var(--ease)
+        }
+
+        .hook-item.active .hook-arr {
+            color: var(--accent);
+            transform: translateX(4px)
+        }
+
+        .hook-progress {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 9px;
+            height: 2.5px;
+            border-radius: 3px;
+            background: rgba(0, 123, 214, .14);
+            overflow: hidden;
+            opacity: 0;
+            transition: .35s
+        }
+
+        .hook-item.active .hook-progress {
+            opacity: 1
+        }
+
+        .hook-progress::after {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), #5BC0F0);
+            border-radius: 3px
+        }
+
+        .hook-item.active .hook-progress::after {
+            animation: fillBar 6s linear forwards
+        }
+
+        .hook-combo.paused .hook-progress::after {
+            animation-play-state: paused
+        }
+
+        @keyframes fillBar {
+            to {
+                width: 100%
+            }
+        }
+
+        .banner {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            min-height: 540px;
+            display: grid;
+            place-items: center;
+            padding: 30px
+        }
+
+        /* 🆕 slide: hanya fade + naik tipis  tidak berputar */
+        .banner-slide {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 30px 58px;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity .6s ease, transform .7s var(--ease);
+            pointer-events: none;
+            z-index: 1
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+            z-index: 2
+        }
+
+        .bs-inner {
+            width: min(560px, 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px
+        }
+
+        .bs-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .65);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, .85);
+            box-shadow: inset 0 1px 0 #fff;
+            color: var(--ink);
+            font-size: .78rem;
+            font-weight: 800;
+            padding: 7px 16px;
+            border-radius: 99px
+        }
+
+        .bs-chip i {
+            color: var(--primary)
+        }
+
+        .bs-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -.01em;
+            text-align: center
+        }
+
+        .bs-title small {
+            display: block;
+            font-size: .8rem;
+            color: var(--muted);
+            font-weight: 500;
+            margin-top: 3px
+        }
+
+        .banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .6);
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
+            border: 1.5px solid rgba(255, 255, 255, .9);
+            box-shadow: inset 0 1px 0 #fff, 0 8px 22px rgba(15, 43, 70, .14);
+            color: var(--ink);
+            font-size: .95rem;
+            z-index: 5;
+            transition: background .35s, color .35s, border-color .35s, transform .45s var(--ease)
+        }
+
+        .banner-arrow:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            transform: translateY(-50%) scale(1.05)
+        }
+
+        .b-prev {
+            left: 16px
+        }
+
+        .b-next {
+            right: 16px
+        }
+
+        .banner-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5
+        }
+
+        .banner-dots button {
+            width: 9px;
+            height: 9px;
+            border-radius: 99px;
+            background: rgba(15, 43, 70, .22);
+            transition: .4s var(--ease);
+            padding: 0
+        }
+
+        .banner-dots button.active {
+            background: var(--primary);
+            width: 28px
+        }
+
+        /* ============ MOCKUP ============ */
+        .dashboard-card {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, .5));
+            border: 1px solid rgba(255, 255, 255, .9);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 16px 44px rgba(15, 43, 70, .12), inset 0 1px 0 #fff
+        }
+
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 10px
+        }
+
+        .dash-label {
+            font-size: .72rem;
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .05em
+        }
+
+        .dash-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .dash-badge {
+            background: var(--secondary-light);
+            color: var(--secondary);
+            font-size: .7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 99px
+        }
+
+        .live-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--secondary-light);
+            border: 1px solid rgba(54, 166, 84, .3);
+            color: var(--secondary);
+            font-size: .7rem;
+            font-weight: 800;
+            padding: 6px 13px;
+            border-radius: 99px
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary);
+            animation: pulseDot 2s infinite;
+            flex-shrink: 0
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(54, 166, 84, .4)
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(54, 166, 84, 0)
+            }
+        }
+
+        .chart-grid line {
+            stroke: rgba(227, 235, 243, .7);
+            stroke-dasharray: 4 6
+        }
+
+        .chart-line {
+            stroke-dasharray: 900;
+            stroke-dashoffset: 900;
+            animation: draw 2.2s .4s ease forwards
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0
+            }
+        }
+
+        .chart-area {
+            opacity: 0;
+            animation: fadeIn 1s 2s forwards
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1
+            }
+        }
+
+        .chart-dot {
+            opacity: 0;
+            animation: fadeIn .5s forwards
+        }
+
+        .dash-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+            margin-top: 12px
+        }
+
+        .dash-stats>div {
+            background: rgba(255, 255, 255, .6);
+            border: 1px solid rgba(255, 255, 255, .78);
+            border-radius: 11px;
+            padding: 10px;
+            text-align: center
+        }
+
+        .dash-stats small {
+            display: block;
+            color: var(--muted);
+            font-size: .62rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .04em
+        }
+
+        .dash-stats b {
+            font-size: .98rem
+        }
+
+        .live-feed {
+            margin-top: 12px;
+            background: rgba(255, 255, 255, .55);
+            border: 1px solid rgba(255, 255, 255, .75);
+            border-radius: 12px;
+            padding: 11px 13px
+        }
+
+        .live-feed h5 {
+            font-size: .68rem;
+            font-weight: 800;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .live-feed ul {
+            list-style: none;
+            display: grid;
+            gap: 6px
+        }
+
+        .live-feed li {
+            font-size: .74rem;
+            color: var(--muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            animation: feedIn .6s ease
+        }
+
+        @keyframes feedIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .live-feed li .fdot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--secondary);
+            flex-shrink: 0;
+            margin-top: 7px;
+            animation: pulseDot 2s infinite
+        }
+
+        .live-feed li b {
+            color: var(--ink)
+        }
+
+        .live-feed li em {
+            font-style: normal;
+            color: var(--muted);
+            font-size: .66rem
+        }
+
+        .sp-input {
+            background: rgba(255, 255, 255, .75);
+            border: 1.5px solid rgba(227, 235, 243, .9);
+            border-radius: 11px;
+            padding: 11px 14px;
+            font-size: .84rem;
+            color: var(--muted);
+            margin-bottom: 9px
+        }
+
+        .sp-input b {
+            color: var(--ink)
+        }
+
+        .sp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 13px;
+            background: rgba(255, 255, 255, .62);
+            border: 1px solid rgba(255, 255, 255, .8);
+            border-radius: 11px;
+            margin-bottom: 8px
+        }
+
+        .sp-row small {
+            color: var(--muted);
+            font-size: .74rem;
+            display: block
+        }
+
+        .sp-row b {
+            font-size: .86rem
+        }
+
+        .sp-check {
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .72rem;
+            font-weight: 700;
+            white-space: nowrap
+        }
+
+        .sp-note {
+            font-size: .74rem;
+            color: var(--muted);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 7px
+        }
+
+        .sp-note i {
+            color: var(--secondary)
+        }
+
+        .va-box {
+            background: rgba(255, 255, 255, .75);
+            border: 1.5px dashed rgba(0, 123, 214, .4);
+            border-radius: 13px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 10px
+        }
+
+        .va-box small {
+            font-size: .66rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px
+        }
+
+        .va-box b {
+            font-size: 1.1rem;
+            letter-spacing: .12em;
+            font-family: monospace
+        }
+
+        .qr {
+            width: 82px;
+            height: 82px;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(15, 43, 70, .12);
+            flex-shrink: 0
+        }
+
+        .rank-bar {
+            height: 7px;
+            border-radius: 99px;
+            background: rgba(0, 123, 214, .15);
+            flex: 1;
+            overflow: hidden
+        }
+
+        .rank-bar span {
+            display: block;
+            height: 100%;
+            border-radius: 99px;
+            background: linear-gradient(90deg, var(--primary), #5BC0F0)
+        }
+
+        .status-pill {
+            font-size: .64rem;
+            font-weight: 800;
+            padding: 4px 11px;
+            border-radius: 99px
+        }
+
+        .st-ok {
+            background: var(--secondary-light);
+            color: var(--secondary)
+        }
+
+        .st-wait {
+            background: var(--yellow-light);
+            color: #8a6d00
+        }
+
+        .wa-mock {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .55));
+            border: 1px solid rgba(255, 255, 255, .9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 44px rgba(15, 43, 70, .12), inset 0 1px 0 #fff
+        }
+
+        .wa-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 43, 70, .88);
+            color: #fff;
+            padding: 12px 16px;
+            font-size: .8rem;
+            font-weight: 700
+        }
+
+        .wa-head i.fa-whatsapp {
+            color: #4ADE80;
+            font-size: 1.05rem
+        }
+
+        .wa-verified {
+            margin-left: auto;
+            color: #4ADE80;
+            font-size: .8rem
+        }
+
+        .wa-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(240, 248, 255, .5)
+        }
+
+        .wa-msg {
+            background: #fff;
+            border-radius: 4px 14px 14px 14px;
+            padding: 12px 14px;
+            font-size: .8rem;
+            color: var(--ink);
+            box-shadow: 0 2px 8px rgba(15, 43, 70, .08);
+            max-width: 85%;
+            align-self: flex-start;
+            line-height: 1.55
+        }
+
+        .wa-msg.out {
+            align-self: flex-end;
+            background: #D8F5DC;
+            border-radius: 14px 4px 14px 14px
+        }
+
+        .wa-msg hr {
+            border: none;
+            border-top: 1px dashed var(--line);
+            margin: 7px 0
+        }
+
+        .wa-msg b.g {
+            color: #1E6B35
+        }
+
+        .wa-time {
+            display: block;
+            text-align: right;
+            font-size: .62rem;
+            color: var(--muted);
+            margin-top: 5px
+        }
+
+        .wa-time i {
+            color: #4ADE80
+        }
+
+        .wa-note {
+            font-size: .74rem;
+            color: var(--muted);
+            text-align: center;
+            padding: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px
+        }
+
+        .wa-note i {
+            color: var(--secondary)
+        }
+
+        /* ============ MASALAH ============ */
+        .strip-dark {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(115deg, #0B2A47, #123B63, #0E3560, #123B63, #0B2A47);
+            background-size: 250% 100%;
+            animation: gradShift 22s linear infinite;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 26px;
+            padding: 42px 50px;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 24px 60px rgba(11, 42, 71, .32), inset 0 1px 0 rgba(255, 255, 255, .14);
+            margin-bottom: 18px
+        }
+
+        @keyframes gradShift {
+            to {
+                background-position: 250% 0
+            }
+        }
+
+        .strip-dark h2 {
+            font-size: clamp(1.35rem, 2.8vw, 2.05rem);
+            font-weight: 800;
+            letter-spacing: -.02em;
+            line-height: 1.32;
+            position: relative;
+            z-index: 2
+        }
+
+        .strip-dark h2 span {
+            background: linear-gradient(92deg, var(--yellow), #FFE08A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .strip-dark p {
+            color: rgba(255, 255, 255, .8);
+            font-size: .94rem;
+            margin-top: 12px;
+            position: relative;
+            z-index: 2
+        }
+
+        .ovals-hint {
+            text-align: center;
+            font-size: .8rem;
+            color: var(--muted);
+            margin: 26px 0 18px;
+            font-weight: 600
+        }
+
+        .ovals-hint i {
+            color: var(--accent);
+            margin-right: 6px;
+            display: inline-block;
+            animation: wiggle 2.6s ease-in-out infinite
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+
+            30% {
+                transform: rotate(-8deg) scale(1.08)
+            }
+
+            70% {
+                transform: rotate(7deg) scale(1.08)
+            }
+        }
+
+        .ovals {
+            display: flex;
+            gap: 14px;
+            align-items: stretch
+        }
+
+        /* 🆕 oval: bernapas sangat halus, morph dihapus, hover melebar lembut */
+        .oval {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            height: 240px;
+            border-radius: 999px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 26px 16px;
+            overflow: hidden;
+            animation: ovalBreath 7s ease-in-out infinite;
+            transition: flex .7s var(--ease), box-shadow .5s, border-color .5s;
+            cursor: default;
+            will-change: flex
+        }
+
+        @keyframes ovalBreath {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.015)
+            }
+        }
+
+        .oval>i {
+            font-size: 1.55rem;
+            margin-bottom: 10px;
+            transition: transform .5s var(--ease)
+        }
+
+        .oval>b {
+            font-size: .86rem;
+            font-weight: 800;
+            line-height: 1.3;
+            transition: color .35s
+        }
+
+        .oval-desc {
+            font-size: .78rem;
+            color: var(--muted);
+            opacity: 0;
+            max-height: 0;
+            transform: translateY(8px);
+            transition: .55s var(--ease) .08s;
+            overflow: hidden
+        }
+
+        .oval:hover {
+            flex: 3.2;
+            box-shadow: 0 18px 44px rgba(15, 43, 70, .14), inset 0 1px 0 #fff
+        }
+
+        .oval:hover .oval-desc {
+            opacity: 1;
+            max-height: 110px;
+            transform: none;
+            margin-top: 9px
+        }
+
+        .oval:hover>i {
+            transform: scale(1.12)
+        }
+
+        .o-blue>i {
+            color: var(--primary)
+        }
+
+        .o-blue:hover {
+            border-color: rgba(0, 123, 214, .45)
+        }
+
+        .o-coral>i {
+            color: var(--accent)
+        }
+
+        .o-coral:hover {
+            border-color: rgba(240, 93, 82, .45)
+        }
+
+        .o-yellow>i {
+            color: #c99a06
+        }
+
+        .o-yellow:hover {
+            border-color: rgba(245, 200, 66, .6)
+        }
+
+        .o-green>i {
+            color: var(--secondary)
+        }
+
+        .o-green:hover {
+            border-color: rgba(54, 166, 84, .45)
+        }
+
+        .cta-strip {
+            margin-top: 46px;
+            background: linear-gradient(120deg, rgba(240, 93, 82, .12), rgba(245, 200, 66, .14));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, .8);
+            border-radius: 24px;
+            padding: 34px 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 26px;
+            flex-wrap: wrap;
+            box-shadow: inset 0 1px 0 #fff
+        }
+
+        .cta-strip h3 {
+            font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+            font-weight: 800;
+            letter-spacing: -.01em
+        }
+
+        .cta-strip p {
+            color: var(--muted);
+            font-size: .92rem;
+            margin-top: 6px
+        }
+
+
+        @media(max-width:920px) {
+            .hook-combo {
+                grid-template-columns: 1fr
+            }
+
+            .hook-list {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 10px;
+                padding-bottom: 10px;
+                scrollbar-width: thin
+            }
+
+            .hook-item {
+                min-width: 225px;
+                flex-shrink: 0;
+                padding: 14px 15px 18px
+            }
+
+            .hook-txt p {
+                display: none
+            }
+
+            .hook-item.active .hook-txt p {
+                display: block;
+                max-height: none;
+                opacity: 1;
+                margin-top: 4px
+            }
+
+            .hook-progress {
+                display: none
+            }
+
+            .banner {
+                min-height: 560px;
+                padding: 24px 52px
+            }
+        }
     </style>
 </head>
 
@@ -440,7 +1684,8 @@
             <a href="#portofolio" class="block px-3 py-2 rounded-lg hover:bg-light font-medium">Portofolio</a>
             <a href="#testimoni" class="block px-3 py-2 rounded-lg hover:bg-light font-medium">Testimoni</a>
             <a href="#faq" class="block px-3 py-2 rounded-lg hover:bg-light font-medium">FAQ</a>
-            <a href="#kontak" class="block mt-2 text-center bg-primary text-white font-semibold rounded-xl px-5 py-3">Hubungi
+            <a href="#kontak"
+                class="block mt-2 text-center bg-primary text-white font-semibold rounded-xl px-5 py-3">Hubungi
                 Kami</a>
         </div>
     </header>
@@ -467,7 +1712,7 @@
                 </h1>
                 <p class="hero-sub mt-5 text-lg text-slate-600 max-w-xl">
                     BIMA menyatukan pendaftaran online, verifikasi berkas, seleksi, hingga pengumuman
-                    dalam satu platform — untuk satu sekolah maupun seluruh unit dalam satu yayasan.
+                    dalam satu platform untuk satu sekolah maupun seluruh unit dalam satu yayasan.
                 </p>
                 <div class="hero-cta mt-8 flex flex-wrap gap-3">
                     <a href="#cta" data-magnetic
@@ -714,7 +1959,7 @@
             <div class="max-w-2xl reveal">
                 <p class="text-sm font-bold tracking-widest text-coral">01 · MASALAH</p>
                 <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">PPDB Manual Itu
-                    Menyita Waktu — dan Rawan Salah.</h2>
+                    Menyita Waktu dan Rawan Salah.</h2>
                 <p class="mt-4 text-slate-600 text-lg">Setiap tahun, tim TU dan pengurus yayasan mengulang pekerjaan
                     yang sama. Sebagian besar sebenarnya bisa dijalankan sistem.</p>
             </div>
@@ -785,7 +2030,7 @@
                 <p class="text-sm font-bold tracking-widest text-primary">02 · PERBANDINGAN</p>
                 <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Geser, dan Rasakan
                     Bedanya.</h2>
-                <p class="mt-4 text-slate-600">Tarik garis ke kiri dan kanan — inilah perbedaan mengelola PPDB dengan
+                <p class="mt-4 text-slate-600">Tarik garis ke kiri dan kanan inilah perbedaan mengelola PPDB dengan
                     cara lama dan dengan BIMA.</p>
             </div>
 
@@ -818,15 +2063,18 @@
                             <div
                                 class="flex items-center justify-between rounded-lg border border-slate-100 px-2.5 py-2">
                                 <span class="text-[11px] font-semibold text-slate-700">Ananda Puspita</span><span
-                                    class="chip-ok text-[9px] font-bold px-2 py-0.5 rounded-full">Lolos</span></div>
+                                    class="chip-ok text-[9px] font-bold px-2 py-0.5 rounded-full">Lolos</span>
+                            </div>
                             <div
                                 class="flex items-center justify-between rounded-lg border border-slate-100 px-2.5 py-2">
                                 <span class="text-[11px] font-semibold text-slate-700">Rizky Alfarizi</span><span
-                                    class="chip-ok text-[9px] font-bold px-2 py-0.5 rounded-full">Lolos</span></div>
+                                    class="chip-ok text-[9px] font-bold px-2 py-0.5 rounded-full">Lolos</span>
+                            </div>
                             <div
                                 class="flex items-center justify-between rounded-lg border border-slate-100 px-2.5 py-2">
                                 <span class="text-[11px] font-semibold text-slate-700">Salsabila Dewi</span><span
-                                    class="chip-cad text-[9px] font-bold px-2 py-0.5 rounded-full">Cadangan</span></div>
+                                    class="chip-cad text-[9px] font-bold px-2 py-0.5 rounded-full">Cadangan</span>
+                            </div>
                         </div>
                     </div>
                     <span
@@ -905,8 +2153,8 @@
                 <p class="text-sm font-bold tracking-widest text-primary">03 · SOLUSI</p>
                 <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Kenalkan, BIMA untuk
                     PPDB.</h2>
-                <p class="mt-4 text-slate-600">Satu platform untuk seluruh proses PPDB — dari formulir sampai pengumuman
-                    — dirancang untuk sekolah dan yayasan multi-unit. Coba langsung demonya di samping →</p>
+                <p class="mt-4 text-slate-600">Satu platform untuk seluruh proses PPDB dari formulir sampai pengumuman
+                    dirancang untuk sekolah dan yayasan multi-unit. Coba langsung demonya di samping →</p>
                 <ul class="mt-7 space-y-4">
                     <li class="flex gap-3"><span
                             class="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-primary/10 grid place-items-center"><svg
@@ -914,7 +2162,7 @@
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg></span><span><strong class="text-slate-900">Satu dashboard untuk semua
-                                pendaftar</strong> — lintas unit, jalur, dan gelombang.</span></li>
+                                pendaftar</strong> lintas unit, jalur, dan gelombang.</span></li>
                     <li class="flex gap-3"><span
                             class="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-primary/10 grid place-items-center"><svg
                                 class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="3"
@@ -928,21 +2176,21 @@
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg></span><span><strong class="text-slate-900">Kuota & jalur fleksibel per unit</strong>
-                            — zonasi, prestasi, afirmasi, atau jalur internal.</span></li>
+                            zonasi, prestasi, afirmasi, atau jalur internal.</span></li>
                     <li class="flex gap-3"><span
                             class="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-primary/10 grid place-items-center"><svg
                                 class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="3"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg></span><span><strong class="text-slate-900">Data pendaftar otomatis jadi data
-                                siswa</strong> — tanpa input ulang.</span></li>
+                                siswa</strong> tanpa input ulang.</span></li>
                     <li class="flex gap-3"><span
                             class="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-primary/10 grid place-items-center"><svg
                                 class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="3"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg></span><span><strong class="text-slate-900">Laporan real-time untuk pengurus
-                                yayasan</strong> — semua unit, satu tempat.</span></li>
+                                yayasan</strong> semua unit, satu tempat.</span></li>
                 </ul>
             </div>
 
@@ -967,7 +2215,7 @@
                 <div class="tab-panel mt-5" data-panel="dash">
                     <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 sm:p-6">
                         <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-slate-900">Ringkasan PPDB — Semua Unit</h4>
+                            <h4 class="font-bold text-slate-900">Ringkasan PPDB Semua Unit</h4>
                             <span
                                 class="inline-flex items-center gap-1.5 text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full"><span
                                     class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Live</span>
@@ -988,7 +2236,7 @@
                             <div class="rounded-xl border border-slate-100 p-3">
                                 <p class="text-[11px] text-slate-500">Pengumuman</p>
                                 <p class="text-xl font-extrabold text-slate-900">3 hari</p>
-                                <p class="text-[11px] text-slate-400">lagi — Gelombang 1</p>
+                                <p class="text-[11px] text-slate-400">lagi Gelombang 1</p>
                             </div>
                         </div>
                         <div class="mt-4 rounded-xl border border-slate-100 p-4">
@@ -1021,7 +2269,7 @@
                 <div class="tab-panel hidden mt-5" data-panel="verif">
                     <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 sm:p-6">
                         <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-slate-900">Verifikasi Berkas — Gelombang 1</h4>
+                            <h4 class="font-bold text-slate-900">Verifikasi Berkas Gelombang 1</h4>
                             <span
                                 class="text-xs font-semibold bg-primary/10 text-primary px-2.5 py-1 rounded-full">Live</span>
                         </div>
@@ -1088,7 +2336,7 @@
                                     class="chip-ok text-[11px] font-semibold px-2.5 py-1 rounded-full">Lolos</span>
                             </div>
                         </div>
-                        <p class="mt-4 text-[11px] text-slate-400">↑ Coba klik filter di atas — tim TU tinggal klik,
+                        <p class="mt-4 text-[11px] text-slate-400">↑ Coba klik filter di atas tim TU tinggal klik,
                             tanpa ketik ulang.</p>
                     </div>
                 </div>
@@ -1097,7 +2345,7 @@
                 <div class="tab-panel hidden mt-5" data-panel="umum">
                     <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 sm:p-6">
                         <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-slate-900">Pengumuman — Gelombang 1</h4>
+                            <h4 class="font-bold text-slate-900">Pengumuman Gelombang 1</h4>
                             <span
                                 class="text-xs font-semibold bg-sun/25 text-amber-700 px-2.5 py-1 rounded-full">Terjadwal</span>
                         </div>
@@ -1162,7 +2410,7 @@
                                     data-final="Lolos" data-variant="ok">Menunggu</span>
                             </div>
                         </div>
-                        <p class="mt-4 text-[11px] text-slate-400">↑ Klik tombol birunya — inilah yang terjadi di
+                        <p class="mt-4 text-[11px] text-slate-400">↑ Klik tombol birunya inilah yang terjadi di
                             hari-H.</p>
                     </div>
                 </div>
@@ -1212,7 +2460,7 @@
                                 d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 11v2m0-4a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2" />
                         </svg></div>
                     <h3 class="mt-4 font-bold text-slate-900">Jalur & Kuota Fleksibel</h3>
-                    <p class="mt-2 text-sm text-slate-600">Atur zonasi, prestasi, afirmasi, atau jalur internal — dengan
+                    <p class="mt-2 text-sm text-slate-600">Atur zonasi, prestasi, afirmasi, atau jalur internal dengan
                         kuota berbeda tiap unit.</p>
                 </div>
                 <div
@@ -1248,7 +2496,7 @@
                                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                         </svg></div>
                     <h3 class="mt-4 font-bold text-slate-900">Pengumuman Otomatis</h3>
-                    <p class="mt-2 text-sm text-slate-600">Hasil seleksi terbit otomatis via web dan email — konsisten,
+                    <p class="mt-2 text-sm text-slate-600">Hasil seleksi terbit otomatis via web dan email konsisten,
                         terjadwal, dan bisa diaudit.</p>
                 </div>
             </div>
@@ -1256,52 +2504,269 @@
     </section>
 
     <!-- ======================= ALUR ======================= -->
-    <section id="alur" class="py-20 lg:py-28 bg-light border-y border-sky-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-2xl mx-auto text-center reveal">
-                <p class="text-sm font-bold tracking-widest text-primary">05 · ALUR</p>
-                <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Dari Pendaftaran
-                    Sampai Pengumuman, dalam Empat Langkah.</h2>
+    <section class="hero section" id="alur" style="padding-top:80px">
+        <div class="container">
+            <div class="max-w-2xl mx-auto text-center reveal mb-10">
+                <p class="text-sm font-bold tracking-widest text-primary uppercase">05 · SOLUSI</p>
+                <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Alur Pendaftaran Otomatis.</h2>
             </div>
-            <div class="mt-14 relative">
-                <div
-                    class="hidden md:block absolute top-7 left-[12%] right-[12%] h-[3px] bg-primary/15 rounded overflow-hidden">
-                    <div id="flowLine" class="h-full w-full origin-left bg-primary rounded" style="transform:scaleX(0)">
+            <div class="flow mb-12" id="flowChips">
+                <span class="flow-label">Alur pendaftar:</span>
+                <span class="flow-chip active"><i class="fa-solid fa-pen-to-square"></i> Daftar</span>
+                <i class="fa-solid fa-chevron-right flow-arrow"></i>
+                <span class="flow-chip"><i class="fa-solid fa-file-shield"></i> Berkas</span>
+                <i class="fa-solid fa-chevron-right flow-arrow"></i>
+                <span class="flow-chip"><i class="fa-solid fa-wallet"></i> Bayar</span>
+                <i class="fa-solid fa-chevron-right flow-arrow"></i>
+                <span class="flow-chip"><i class="fa-solid fa-ranking-star"></i> Seleksi</span>
+                <i class="fa-solid fa-chevron-right flow-arrow"></i>
+                <span class="flow-chip"><i class="fa-solid fa-bullhorn"></i> Pengumuman</span>
+            </div>
+
+            <!-- HOOK + BANNER -->
+            <div class="hook-combo reveal d2" id="hookCombo">
+                <div class="hook-list">
+                    <div class="hook-item active" data-slide="0">
+                        <span class="hook-num">01</span>
+                        <div class="hook-txt">
+                            <h3>Satu Command Center</h3>
+                            <p>Pantau pendaftar, pembayaran &amp; progres seleksi real-time dari satu layar.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right hook-arr"></i>
+                        <span class="hook-progress"></span>
+                    </div>
+                    <div class="hook-item" data-slide="1">
+                        <span class="hook-num">02</span>
+                        <div class="hook-txt">
+                            <h3>Pendaftaran Online</h3>
+                            <p>Formulir 24/7 dari HP, validasi otomatis, anti data ganda.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right hook-arr"></i>
+                        <span class="hook-progress"></span>
+                    </div>
+                    <div class="hook-item" data-slide="2">
+                        <span class="hook-num">03</span>
+                        <div class="hook-txt">
+                            <h3>Berkas Digital</h3>
+                            <p>Unggah sekali, diverifikasi otomatis tak ada lagi dokumen tercecer.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right hook-arr"></i>
+                        <span class="hook-progress"></span>
+                    </div>
+                    <div class="hook-item" data-slide="3">
+                        <span class="hook-num">04</span>
+                        <div class="hook-txt">
+                            <h3>Pembayaran Online</h3>
+                            <p>QRIS, VA &amp; e-wallet yang cocok otomatis dengan tagihan pendaftar.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right hook-arr"></i>
+                        <span class="hook-progress"></span>
+                    </div>
+                    <div class="hook-item" data-slide="4">
+                        <span class="hook-num">05</span>
+                        <div class="hook-txt">
+                            <h3>Pengumuman Sekali Klik</h3>
+                            <p>Hasil seleksi terkirim otomatis ke WhatsApp &amp; email orang tua.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right hook-arr"></i>
+                        <span class="hook-progress"></span>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-4 gap-10">
-                    <div class="flow-step text-center">
-                        <div
-                            class="flow-num w-14 h-14 mx-auto rounded-full bg-white border-2 border-primary text-primary font-extrabold text-lg grid place-items-center ring-8 ring-light">
-                            1</div>
-                        <h3 class="mt-4 font-bold text-slate-900">Daftar Online</h3>
-                        <p class="mt-2 text-sm text-slate-600">Orang tua mengisi formulir dan mengunggah berkas dari
-                            rumah.</p>
+
+                <div class="banner glass" id="banner">
+                    <div class="banner-slide active" data-slide="0">
+                        <div class="orb orb-blue" style="width:300px;height:300px;top:-80px;left:-70px"
+                            aria-hidden="true"></div>
+                        <div class="bs-inner">
+                            <span class="bs-chip"><i class="fa-solid fa-gauge-high"></i> 01 · Command Center</span>
+                            <div class="bs-title">Seluruh PPDB dalam Satu Layar<small>Dashboard real-time untuk kepala
+                                    sekolah &amp; panitia</small></div>
+                            <div class="dashboard-card shine">
+                                <div class="dash-header">
+                                    <div><span class="dash-label">PPDB 2025/2026</span>
+                                        <div class="dash-value">1.842 Pendaftar <span class="dash-badge"><i
+                                                    class="fa-solid fa-arrow-trend-up"></i> +128</span></div>
+                                    </div>
+                                    <span class="live-pill"><span class="live-dot"></span> Dibuka</span>
+                                </div>
+                                <svg viewBox="0 0 400 150" width="100%" height="auto">
+                                    <defs>
+                                        <linearGradient id="fillG" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#007BD6" stop-opacity=".28" />
+                                            <stop offset="100%" stop-color="#007BD6" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <g class="chart-grid">
+                                        <line x1="0" y1="38" x2="400" y2="38" />
+                                        <line x1="0" y1="76" x2="400" y2="76" />
+                                        <line x1="0" y1="114" x2="400" y2="114" />
+                                    </g>
+                                    <path class="chart-area"
+                                        d="M0,124 C55,118 85,94 135,97 C185,100 205,62 255,55 C305,48 335,24 400,14 L400,150 L0,150 Z"
+                                        fill="url(#fillG)" />
+                                    <path class="chart-line"
+                                        d="M0,124 C55,118 85,94 135,97 C185,100 205,62 255,55 C305,48 335,24 400,14"
+                                        fill="none" stroke="#007BD6" stroke-width="3.5" stroke-linecap="round" />
+                                    <circle class="chart-dot" style="animation-delay:1.2s" cx="255" cy="55" r="5"
+                                        fill="#fff" stroke="#007BD6" stroke-width="3" />
+                                    <circle class="chart-dot" style="animation-delay:1.6s" cx="400" cy="14" r="6"
+                                        fill="#F05D52" stroke="#fff" stroke-width="3" />
+                                </svg>
+                                <div class="dash-stats">
+                                    <div><small>Terverifikasi</small><b>1.714</b></div>
+                                    <div><small>Sisa kuota</small><b>186</b></div>
+                                    <div><small>Jalur aktif</small><b>3</b></div>
+                                </div>
+                                <div class="live-feed">
+                                    <h5><span class="live-dot"></span> Aktivitas real-time</h5>
+                                    <ul id="liveFeed"></ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flow-step text-center">
-                        <div
-                            class="flow-num w-14 h-14 mx-auto rounded-full bg-white border-2 border-primary text-primary font-extrabold text-lg grid place-items-center ring-8 ring-light">
-                            2</div>
-                        <h3 class="mt-4 font-bold text-slate-900">Verifikasi</h3>
-                        <p class="mt-2 text-sm text-slate-600">Tim TU memeriksa berkas langsung di dashboard, tanpa
-                            mengetik ulang.</p>
+
+                    <div class="banner-slide" data-slide="1">
+                        <div class="orb orb-green"
+                            style="width:300px;height:300px;bottom:-90px;right:-80px;animation-delay:-4s"
+                            aria-hidden="true"></div>
+                        <div class="bs-inner">
+                            <span class="bs-chip"><i class="fa-solid fa-wpforms"></i> 02 · Formulir Online</span>
+                            <div class="bs-title">Daftar dari HP, Validasi Otomatis<small>Data ganda langsung terdeteksi
+                                    &amp; diblokir</small></div>
+                            <div class="dashboard-card shine" style="max-width:420px">
+                                <div class="sp-input"><b>Nama Lengkap</b><br>Andini Putri Ramadhani</div>
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+                                    <div class="sp-input"><b>NISN</b><br>0123456789</div>
+                                    <div class="sp-input"><b>Asal Sekolah</b><br>SMP Negeri 12</div>
+                                </div>
+                                <div class="sp-input"><b>Jalur Pendaftaran</b><br>Prestasi ▾</div>
+                                <div class="sp-note"><i class="fa-solid fa-circle-check"></i> NISN sudah terdaftar?
+                                    Sistem menolak otomatis.</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flow-step text-center">
-                        <div
-                            class="flow-num w-14 h-14 mx-auto rounded-full bg-white border-2 border-primary text-primary font-extrabold text-lg grid place-items-center ring-8 ring-light">
-                            3</div>
-                        <h3 class="mt-4 font-bold text-slate-900">Seleksi</h3>
-                        <p class="mt-2 text-sm text-slate-600">Sistem memproses sesuai jalur dan kuota yang ditetapkan
-                            sekolah.</p>
+
+                    <div class="banner-slide" data-slide="2">
+                        <div class="orb orb-yellow"
+                            style="width:280px;height:280px;top:-80px;right:-70px;animation-delay:-6s"
+                            aria-hidden="true"></div>
+                        <div class="bs-inner">
+                            <span class="bs-chip"><i class="fa-solid fa-file-shield"></i> 03 · Berkas Digital</span>
+                            <div class="bs-title">Unggah Sekali, Verifikasi Otomatis<small>Kelengkapan &amp; format
+                                    diperiksa dalam hitungan detik</small></div>
+                            <div class="dashboard-card shine" style="max-width:420px">
+                                <div class="sp-row">
+                                    <div><small>Kartu Keluarga</small><b>kk_keluarga.pdf</b></div><span
+                                        class="sp-check"><i class="fa-solid fa-circle-check"></i> Terverifikasi</span>
+                                </div>
+                                <div class="sp-row">
+                                    <div><small>Akta Kelahiran</small><b>akta_lahir.pdf</b></div><span
+                                        class="sp-check"><i class="fa-solid fa-circle-check"></i> Terverifikasi</span>
+                                </div>
+                                <div class="sp-row">
+                                    <div><small>Rapor Semester 1–5</small><b>rapor.pdf</b></div><span
+                                        class="sp-check"><i class="fa-solid fa-circle-check"></i> Terverifikasi</span>
+                                </div>
+                                <div class="sp-row">
+                                    <div><small>Pas Foto 3×4</small><b>foto.jpg</b></div><span class="sp-check"><i
+                                            class="fa-solid fa-circle-check"></i> Terverifikasi</span>
+                                </div>
+                                <div class="sp-note"><i class="fa-solid fa-robot"></i> Berkas kurang? Sistem memberi
+                                    tahu pendaftar otomatis.</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flow-step text-center">
-                        <div
-                            class="flow-num w-14 h-14 mx-auto rounded-full bg-white border-2 border-primary text-primary font-extrabold text-lg grid place-items-center ring-8 ring-light">
-                            4</div>
-                        <h3 class="mt-4 font-bold text-slate-900">Pengumuman</h3>
-                        <p class="mt-2 text-sm text-slate-600">Hasil terbit otomatis; data pendaftar langsung siap jadi
-                            data siswa.</p>
+
+                    <div class="banner-slide" data-slide="3">
+                        <div class="orb orb-coral"
+                            style="width:280px;height:280px;bottom:-90px;left:-70px;animation-delay:-3s"
+                            aria-hidden="true"></div>
+                        <div class="bs-inner">
+                            <span class="bs-chip"><i class="fa-solid fa-wallet"></i> 04 · Pembayaran Online</span>
+                            <div class="bs-title">Cocok Otomatis, Tanpa Cek Mutasi<small>QRIS, Virtual Account &amp;
+                                    e-wallet</small></div>
+                            <div class="dashboard-card shine" style="max-width:440px">
+                                <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+                                    <div style="flex:1;min-width:200px">
+                                        <div class="va-box"><small>Virtual Account</small><b>8808 1234 5678</b></div>
+                                        <div class="sp-row">
+                                            <div><small>Biaya Pendaftaran</small><b>Rp 250.000</b></div><span
+                                                class="sp-check"><i class="fa-solid fa-circle-check"></i> Lunas</span>
+                                        </div>
+                                    </div>
+                                    <svg class="qr" viewBox="0 0 25 25" aria-hidden="true">
+                                        <rect width="25" height="25" rx="3" fill="#fff" />
+                                        <g fill="#0F2B46">
+                                            <rect x="1" y="1" width="7" height="7" />
+                                            <rect x="17" y="1" width="7" height="7" />
+                                            <rect x="1" y="17" width="7" height="7" />
+                                            <rect x="3" y="3" width="3" height="3" fill="#fff" />
+                                            <rect x="19" y="3" width="3" height="3" fill="#fff" />
+                                            <rect x="3" y="19" width="3" height="3" fill="#fff" />
+                                            <rect x="3" y="3" width="3" height="3" />
+                                            <rect x="19" y="3" width="3" height="3" />
+                                            <rect x="3" y="19" width="3" height="3" />
+                                            <rect x="10" y="2" width="2" height="2" />
+                                            <rect x="13" y="4" width="2" height="2" />
+                                            <rect x="11" y="7" width="2" height="2" />
+                                            <rect x="15" y="8" width="2" height="2" />
+                                            <rect x="10" y="10" width="2" height="2" />
+                                            <rect x="13" y="12" width="2" height="2" />
+                                            <rect x="16" y="11" width="2" height="2" />
+                                            <rect x="19" y="13" width="2" height="2" />
+                                            <rect x="2" y="10" width="2" height="2" />
+                                            <rect x="4" y="13" width="2" height="2" />
+                                            <rect x="7" y="11" width="2" height="2" />
+                                            <rect x="10" y="14" width="2" height="2" />
+                                            <rect x="13" y="16" width="2" height="2" />
+                                            <rect x="10" y="18" width="2" height="2" />
+                                            <rect x="15" y="19" width="2" height="2" />
+                                            <rect x="18" y="16" width="2" height="2" />
+                                            <rect x="20" y="19" width="2" height="2" />
+                                            <rect x="13" y="21" width="2" height="2" />
+                                            <rect x="7" y="21" width="2" height="2" />
+                                            <rect x="22" y="10" width="2" height="2" />
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="sp-note"><i class="fa-solid fa-bolt"></i> Webhook payment gateway cocokkan
+                                    tagihan real-time tanpa salah catat.</div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="banner-slide" data-slide="4">
+                        <div class="orb orb-green"
+                            style="width:280px;height:280px;top:-80px;left:-70px;animation-delay:-8s"
+                            aria-hidden="true"></div>
+                        <div class="bs-inner">
+                            <span class="bs-chip"><i class="fa-brands fa-whatsapp"></i> 05 · Pengumuman</span>
+                            <div class="bs-title">Sekali Klik, Semua Terkabar<small>Notifikasi WhatsApp &amp; email
+                                    orang tua</small></div>
+                            <div class="wa-mock shine">
+                                <div class="wa-head"><i class="fa-brands fa-whatsapp"></i> BIMA Official Account <span
+                                        class="wa-verified"><i class="fa-solid fa-circle-check"></i></span></div>
+                                <div class="wa-body">
+                                    <div class="wa-msg">🎉 <b>Selamat!</b> Ananda <b>Andini Putri</b> dinyatakan <b
+                                            class="g">LULUS</b> di SMAN 7 Nusantara, jalur <b>Prestasi</b>.
+                                        <hr>No. Reg: <b>BIMA-PPDB-0231</b><br>Silakan daftar ulang sebelum <b>15 Juli
+                                            2025</b>.<span class="wa-time">10.24 <i
+                                                class="fa-solid fa-check-double"></i></span>
+                                    </div>
+                                    <div class="wa-msg out">Terima kasih Pak 🙏 Infonya cepat sekali!<span
+                                            class="wa-time">10.25 <i class="fa-solid fa-check-double"></i></span></div>
+                                </div>
+                                <div class="wa-note"><i class="fa-solid fa-bolt"></i> 680 pesan terkirim otomatis dalam
+                                    &lt; 5 menit</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="banner-arrow b-prev" id="bPrev" aria-label="Slide sebelumnya"><i
+                            class="fa-solid fa-chevron-left"></i></button>
+                    <button class="banner-arrow b-next" id="bNext" aria-label="Slide berikutnya"><i
+                            class="fa-solid fa-chevron-right"></i></button>
+                    <div class="banner-dots" id="bDots"></div>
                 </div>
             </div>
         </div>
@@ -1352,7 +2817,7 @@
                         </svg></span>
                     <div>
                         <h3 class="font-bold text-slate-900">Lebih Transparan</h3>
-                        <p class="mt-1 text-sm text-slate-600">Orang tua melihat status pendaftaran secara jelas —
+                        <p class="mt-1 text-sm text-slate-600">Orang tua melihat status pendaftaran secara jelas
                             komplain menurun drastis.</p>
                     </div>
                 </div>
@@ -1378,7 +2843,7 @@
                         </svg></span>
                     <div>
                         <h3 class="font-bold text-slate-900">Kendali di Tangan Yayasan</h3>
-                        <p class="mt-1 text-sm text-slate-600">Kuota, jalur, dan laporan lintas unit — semua dalam satu
+                        <p class="mt-1 text-sm text-slate-600">Kuota, jalur, dan laporan lintas unit semua dalam satu
                             tempat.</p>
                     </div>
                 </div>
@@ -1393,22 +2858,30 @@
                 <p class="text-sm font-bold tracking-widest text-primary">07 · PORTOFOLIO</p>
                 <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Sekolah yang Sudah
                     Membuktikan.</h2>
-                <p class="mt-4 text-slate-600 text-lg">Lihat bagaimana BIMA membantu sekolah dan yayasan melaksanakan PPDB digital dengan lancar dan efisien.</p>
+                <p class="mt-4 text-slate-600 text-lg">Lihat bagaimana BIMA membantu sekolah dan yayasan melaksanakan
+                    PPDB digital dengan lancar dan efisien.</p>
             </div>
 
             <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
                 <!-- Card 1 -->
-                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group" onclick="openPorto(0)">
+                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group"
+                    onclick="openPorto(0)">
                     <div class="relative h-52 overflow-hidden">
-                        <div class="porto-img w-full h-full bg-gradient-to-br from-primary/20 via-sky-200/40 to-secondary/20 flex items-center justify-center">
+                        <div
+                            class="porto-img w-full h-full bg-gradient-to-br from-primary/20 via-sky-200/40 to-secondary/20 flex items-center justify-center">
                             <div class="text-center">
                                 <div class="w-16 h-16 mx-auto rounded-2xl bg-primary/15 grid place-items-center mb-3">
-                                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
+                                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                                    </svg>
                                 </div>
                                 <p class="text-sm font-bold text-navy">SMA Nusantara</p>
                             </div>
                         </div>
-                        <div class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <p class="text-white text-sm font-medium">Klik untuk detail →</p>
                         </div>
                     </div>
@@ -1418,26 +2891,42 @@
                             <span class="text-xs text-slate-400">4 unit sekolah</span>
                         </div>
                         <h3 class="font-bold text-slate-900 text-lg">Yayasan Nusantara Jaya</h3>
-                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Mengelola PPDB 4 unit sekolah (SD–SMA) dengan satu dashboard terpadu. Antrian di sekretariat menurun 90%.</p>
+                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Mengelola PPDB 4 unit sekolah (SD–SMA)
+                            dengan satu dashboard terpadu. Antrian di sekretariat menurun 90%.</p>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500">
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> 1.240 pendaftar</span>
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> 4.9/5.0</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                                </svg> 1.240 pendaftar</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg> 4.9/5.0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group" onclick="openPorto(1)">
+                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group"
+                    onclick="openPorto(1)">
                     <div class="relative h-52 overflow-hidden">
-                        <div class="porto-img w-full h-full bg-gradient-to-br from-secondary/20 via-emerald-200/40 to-primary/20 flex items-center justify-center">
+                        <div
+                            class="porto-img w-full h-full bg-gradient-to-br from-secondary/20 via-emerald-200/40 to-primary/20 flex items-center justify-center">
                             <div class="text-center">
                                 <div class="w-16 h-16 mx-auto rounded-2xl bg-secondary/15 grid place-items-center mb-3">
-                                    <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"/></svg>
+                                    <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+                                    </svg>
                                 </div>
                                 <p class="text-sm font-bold text-navy">SMPN 5 Surabaya</p>
                             </div>
                         </div>
-                        <div class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <p class="text-white text-sm font-medium">Klik untuk detail →</p>
                         </div>
                     </div>
@@ -1447,26 +2936,42 @@
                             <span class="text-xs text-slate-400">Surabaya</span>
                         </div>
                         <h3 class="font-bold text-slate-900 text-lg">SMPN 5 Surabaya</h3>
-                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Pendaftaran zonasi dan prestasi berjalan paralel tanpa bentrok data. Waktu verifikasi turun 75%.</p>
+                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Pendaftaran zonasi dan prestasi berjalan
+                            paralel tanpa bentrok data. Waktu verifikasi turun 75%.</p>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500">
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> 867 pendaftar</span>
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> 4.8/5.0</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                                </svg> 867 pendaftar</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg> 4.8/5.0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group" onclick="openPorto(2)">
+                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group"
+                    onclick="openPorto(2)">
                     <div class="relative h-52 overflow-hidden">
-                        <div class="porto-img w-full h-full bg-gradient-to-br from-sun/20 via-amber-200/40 to-coral/20 flex items-center justify-center">
+                        <div
+                            class="porto-img w-full h-full bg-gradient-to-br from-sun/20 via-amber-200/40 to-coral/20 flex items-center justify-center">
                             <div class="text-center">
                                 <div class="w-16 h-16 mx-auto rounded-2xl bg-sun/15 grid place-items-center mb-3">
-                                    <svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg>
+                                    <svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                    </svg>
                                 </div>
                                 <p class="text-sm font-bold text-navy">SD Al-Hidayah</p>
                             </div>
                         </div>
-                        <div class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <p class="text-white text-sm font-medium">Klik untuk detail →</p>
                         </div>
                     </div>
@@ -1476,26 +2981,42 @@
                             <span class="text-xs text-slate-400">Bandung</span>
                         </div>
                         <h3 class="font-bold text-slate-900 text-lg">SD Islam Al-Hidayah</h3>
-                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Dari formulir kertas ke digital dalam 2 minggu. Orang tua bisa daftar dan upload berkas dari HP.</p>
+                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Dari formulir kertas ke digital dalam 2
+                            minggu. Orang tua bisa daftar dan upload berkas dari HP.</p>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500">
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> 312 pendaftar</span>
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> 5.0/5.0</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                                </svg> 312 pendaftar</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg> 5.0/5.0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group" onclick="openPorto(3)">
+                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group"
+                    onclick="openPorto(3)">
                     <div class="relative h-52 overflow-hidden">
-                        <div class="porto-img w-full h-full bg-gradient-to-br from-coral/20 via-rose-200/40 to-primary/20 flex items-center justify-center">
+                        <div
+                            class="porto-img w-full h-full bg-gradient-to-br from-coral/20 via-rose-200/40 to-primary/20 flex items-center justify-center">
                             <div class="text-center">
                                 <div class="w-16 h-16 mx-auto rounded-2xl bg-coral/15 grid place-items-center mb-3">
-                                    <svg class="w-8 h-8 text-coral" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
+                                    <svg class="w-8 h-8 text-coral" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                                    </svg>
                                 </div>
                                 <p class="text-sm font-bold text-navy">SMA Harapan Bangsa</p>
                             </div>
                         </div>
-                        <div class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <p class="text-white text-sm font-medium">Klik untuk detail →</p>
                         </div>
                     </div>
@@ -1505,26 +3026,43 @@
                             <span class="text-xs text-slate-400">Jakarta</span>
                         </div>
                         <h3 class="font-bold text-slate-900 text-lg">SMA Harapan Bangsa</h3>
-                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Integrasi langsung dengan SIA sekolah. Siswa yang diterima otomatis masuk ke database akademik.</p>
+                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Integrasi langsung dengan SIA sekolah. Siswa
+                            yang diterima otomatis masuk ke database akademik.</p>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500">
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> 534 pendaftar</span>
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> 4.7/5.0</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                                </svg> 534 pendaftar</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg> 4.7/5.0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 5 -->
-                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group" onclick="openPorto(4)">
+                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group"
+                    onclick="openPorto(4)">
                     <div class="relative h-52 overflow-hidden">
-                        <div class="porto-img w-full h-full bg-gradient-to-br from-indigo-200/40 via-primary/20 to-sky-200/40 flex items-center justify-center">
+                        <div
+                            class="porto-img w-full h-full bg-gradient-to-br from-indigo-200/40 via-primary/20 to-sky-200/40 flex items-center justify-center">
                             <div class="text-center">
-                                <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-500/15 grid place-items-center mb-3">
-                                    <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                                <div
+                                    class="w-16 h-16 mx-auto rounded-2xl bg-indigo-500/15 grid place-items-center mb-3">
+                                    <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                    </svg>
                                 </div>
                                 <p class="text-sm font-bold text-navy">SMK Telkom</p>
                             </div>
                         </div>
-                        <div class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <p class="text-white text-sm font-medium">Klik untuk detail →</p>
                         </div>
                     </div>
@@ -1534,26 +3072,42 @@
                             <span class="text-xs text-slate-400">Malang</span>
                         </div>
                         <h3 class="font-bold text-slate-900 text-lg">SMK Telkom Malang</h3>
-                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Seleksi 5 jurusan berjalan otomatis berdasarkan nilai rapor. Tanpa intervensi manual panitia.</p>
+                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Seleksi 5 jurusan berjalan otomatis
+                            berdasarkan nilai rapor. Tanpa intervensi manual panitia.</p>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500">
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> 1.580 pendaftar</span>
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> 4.9/5.0</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                                </svg> 1.580 pendaftar</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg> 4.9/5.0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 6 -->
-                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group" onclick="openPorto(5)">
+                <div class="porto-card reveal bg-white rounded-2xl border border-slate-100 overflow-hidden group"
+                    onclick="openPorto(5)">
                     <div class="relative h-52 overflow-hidden">
-                        <div class="porto-img w-full h-full bg-gradient-to-br from-teal-200/40 via-secondary/20 to-emerald-200/40 flex items-center justify-center">
+                        <div
+                            class="porto-img w-full h-full bg-gradient-to-br from-teal-200/40 via-secondary/20 to-emerald-200/40 flex items-center justify-center">
                             <div class="text-center">
                                 <div class="w-16 h-16 mx-auto rounded-2xl bg-teal-500/15 grid place-items-center mb-3">
-                                    <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"/></svg>
+                                    <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21" />
+                                    </svg>
                                 </div>
                                 <p class="text-sm font-bold text-navy">Yayasan Bina Ilmu</p>
                             </div>
                         </div>
-                        <div class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div
+                            class="porto-overlay absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <p class="text-white text-sm font-medium">Klik untuk detail →</p>
                         </div>
                     </div>
@@ -1563,10 +3117,19 @@
                             <span class="text-xs text-slate-400">6 unit sekolah</span>
                         </div>
                         <h3 class="font-bold text-slate-900 text-lg">Yayasan Bina Ilmu</h3>
-                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Monitoring real-time kuota semua unit dari satu dashboard yayasan. Laporan konsolidasi otomatis.</p>
+                        <p class="mt-1 text-sm text-slate-600 line-clamp-2">Monitoring real-time kuota semua unit dari
+                            satu dashboard yayasan. Laporan konsolidasi otomatis.</p>
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500">
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> 2.100 pendaftar</span>
-                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> 4.8/5.0</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-secondary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                                </svg> 2.100 pendaftar</span>
+                            <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-primary"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg> 4.8/5.0</span>
                         </div>
                     </div>
                 </div>
@@ -1575,12 +3138,19 @@
     </section>
 
     <!-- ======================= PORTFOLIO MODAL ======================= -->
-    <div id="portoModal" class="fixed inset-0 z-[80] bg-navy/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none">
+    <div id="portoModal"
+        class="fixed inset-0 z-[80] bg-navy/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none">
         <div class="modal-panel bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div class="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-slate-100 px-6 py-4 flex items-center justify-between">
+            <div
+                class="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-slate-100 px-6 py-4 flex items-center justify-between">
                 <h3 id="portoModalTitle" class="font-extrabold text-slate-900 text-lg">Detail Portofolio</h3>
-                <button onclick="closePorto()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 grid place-items-center transition" aria-label="Tutup">
-                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                <button onclick="closePorto()"
+                    class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 grid place-items-center transition"
+                    aria-label="Tutup">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
             </div>
             <div id="portoModalBody" class="p-6"></div>
@@ -1608,7 +3178,7 @@
                                 class="w-9 h-9 rounded-full bg-primary/15 text-primary grid place-items-center text-xs font-extrabold">RS</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Ratna S.</p>
-                                <p class="text-xs text-slate-500">Kepala TU — SMA Nusantara*</p>
+                                <p class="text-xs text-slate-500">Kepala TU SMA Nusantara*</p>
                             </div>
                         </div>
                     </div>
@@ -1620,7 +3190,7 @@
                                 class="w-9 h-9 rounded-full bg-secondary/15 text-secondary grid place-items-center text-xs font-extrabold">HW</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Bpk. Hendra W.</p>
-                                <p class="text-xs text-slate-500">Pengurus — Yayasan Cendekia*</p>
+                                <p class="text-xs text-slate-500">Pengurus Yayasan Cendekia*</p>
                             </div>
                         </div>
                     </div>
@@ -1632,7 +3202,7 @@
                                 class="w-9 h-9 rounded-full bg-coral/15 text-coral grid place-items-center text-xs font-extrabold">LE</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Ibu Lestari</p>
-                                <p class="text-xs text-slate-500">Kepsek — SMP Harapan*</p>
+                                <p class="text-xs text-slate-500">Kepsek SMP Harapan*</p>
                             </div>
                         </div>
                     </div>
@@ -1644,7 +3214,7 @@
                                 class="w-9 h-9 rounded-full bg-sun/30 text-amber-600 grid place-items-center text-xs font-extrabold">DP</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Dwi P.</p>
-                                <p class="text-xs text-slate-500">Staf PPDB — Yayasan Bina Bangsa*</p>
+                                <p class="text-xs text-slate-500">Staf PPDB Yayasan Bina Bangsa*</p>
                             </div>
                         </div>
                     </div>
@@ -1657,7 +3227,7 @@
                                 class="w-9 h-9 rounded-full bg-primary/15 text-primary grid place-items-center text-xs font-extrabold">RS</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Ratna S.</p>
-                                <p class="text-xs text-slate-500">Kepala TU — SMA Nusantara*</p>
+                                <p class="text-xs text-slate-500">Kepala TU SMA Nusantara*</p>
                             </div>
                         </div>
                     </div>
@@ -1669,7 +3239,7 @@
                                 class="w-9 h-9 rounded-full bg-secondary/15 text-secondary grid place-items-center text-xs font-extrabold">HW</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Bpk. Hendra W.</p>
-                                <p class="text-xs text-slate-500">Pengurus — Yayasan Cendekia*</p>
+                                <p class="text-xs text-slate-500">Pengurus Yayasan Cendekia*</p>
                             </div>
                         </div>
                     </div>
@@ -1681,7 +3251,7 @@
                                 class="w-9 h-9 rounded-full bg-coral/15 text-coral grid place-items-center text-xs font-extrabold">LE</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Ibu Lestari</p>
-                                <p class="text-xs text-slate-500">Kepsek — SMP Harapan*</p>
+                                <p class="text-xs text-slate-500">Kepsek SMP Harapan*</p>
                             </div>
                         </div>
                     </div>
@@ -1693,7 +3263,7 @@
                                 class="w-9 h-9 rounded-full bg-sun/30 text-amber-600 grid place-items-center text-xs font-extrabold">DP</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Dwi P.</p>
-                                <p class="text-xs text-slate-500">Staf PPDB — Yayasan Bina Bangsa*</p>
+                                <p class="text-xs text-slate-500">Staf PPDB Yayasan Bina Bangsa*</p>
                             </div>
                         </div>
                     </div>
@@ -1710,7 +3280,7 @@
                                 class="w-9 h-9 rounded-full bg-secondary/15 text-secondary grid place-items-center text-xs font-extrabold">MA</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Maya A.</p>
-                                <p class="text-xs text-slate-500">Kurikulum — SIT Al-Ikhlas*</p>
+                                <p class="text-xs text-slate-500">Kurikulum SIT Al-Ikhlas*</p>
                             </div>
                         </div>
                     </div>
@@ -1722,19 +3292,19 @@
                                 class="w-9 h-9 rounded-full bg-primary/15 text-primary grid place-items-center text-xs font-extrabold">SY</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Sari Y.</p>
-                                <p class="text-xs text-slate-500">Humas — Yayasan Ananda*</p>
+                                <p class="text-xs text-slate-500">Humas Yayasan Ananda*</p>
                             </div>
                         </div>
                     </div>
                     <div class="mr-5 w-[340px] shrink-0 bg-white rounded-2xl border border-slate-100 p-6">
                         <div class="flex gap-1 text-sun text-sm">★★★★★</div>
                         <p class="mt-3 text-sm text-slate-700 leading-relaxed">"Kami sempat ragu karena unit kami kecil.
-                            Ternyata justru lebih terasa manfaatnya — tim yang sedikit jadi sanggup."</p>
+                            Ternyata justru lebih terasa manfaatnya tim yang sedikit jadi sanggup."</p>
                         <div class="mt-4 pt-4 border-t border-slate-100 flex items-center gap-3"><span
                                 class="w-9 h-9 rounded-full bg-coral/15 text-coral grid place-items-center text-xs font-extrabold">BN</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Bambang N.</p>
-                                <p class="text-xs text-slate-500">Kepsek — SD Tunas Mekar*</p>
+                                <p class="text-xs text-slate-500">Kepsek SD Tunas Mekar*</p>
                             </div>
                         </div>
                     </div>
@@ -1746,7 +3316,7 @@
                                 class="w-9 h-9 rounded-full bg-sun/30 text-amber-600 grid place-items-center text-xs font-extrabold">FA</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Fitri A.</p>
-                                <p class="text-xs text-slate-500">Keuangan — Yayasan Pilar*</p>
+                                <p class="text-xs text-slate-500">Keuangan Yayasan Pilar*</p>
                             </div>
                         </div>
                     </div>
@@ -1759,7 +3329,7 @@
                                 class="w-9 h-9 rounded-full bg-secondary/15 text-secondary grid place-items-center text-xs font-extrabold">MA</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Maya A.</p>
-                                <p class="text-xs text-slate-500">Kurikulum — SIT Al-Ikhlas*</p>
+                                <p class="text-xs text-slate-500">Kurikulum SIT Al-Ikhlas*</p>
                             </div>
                         </div>
                     </div>
@@ -1771,19 +3341,19 @@
                                 class="w-9 h-9 rounded-full bg-primary/15 text-primary grid place-items-center text-xs font-extrabold">SY</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Sari Y.</p>
-                                <p class="text-xs text-slate-500">Humas — Yayasan Ananda*</p>
+                                <p class="text-xs text-slate-500">Humas Yayasan Ananda*</p>
                             </div>
                         </div>
                     </div>
                     <div class="mr-5 w-[340px] shrink-0 bg-white rounded-2xl border border-slate-100 p-6">
                         <div class="flex gap-1 text-sun text-sm">★★★★★</div>
                         <p class="mt-3 text-sm text-slate-700 leading-relaxed">"Kami sempat ragu karena unit kami kecil.
-                            Ternyata justru lebih terasa manfaatnya — tim yang sedikit jadi sanggup."</p>
+                            Ternyata justru lebih terasa manfaatnya tim yang sedikit jadi sanggup."</p>
                         <div class="mt-4 pt-4 border-t border-slate-100 flex items-center gap-3"><span
                                 class="w-9 h-9 rounded-full bg-coral/15 text-coral grid place-items-center text-xs font-extrabold">BN</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Bambang N.</p>
-                                <p class="text-xs text-slate-500">Kepsek — SD Tunas Mekar*</p>
+                                <p class="text-xs text-slate-500">Kepsek SD Tunas Mekar*</p>
                             </div>
                         </div>
                     </div>
@@ -1795,13 +3365,13 @@
                                 class="w-9 h-9 rounded-full bg-sun/30 text-amber-600 grid place-items-center text-xs font-extrabold">FA</span>
                             <div>
                                 <p class="font-bold text-slate-900 text-sm">Fitri A.</p>
-                                <p class="text-xs text-slate-500">Keuangan — Yayasan Pilar*</p>
+                                <p class="text-xs text-slate-500">Keuangan Yayasan Pilar*</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="text-center text-xs text-slate-400 pt-2">*Nama & sekolah contoh — ganti dengan testimoni klien
+            <p class="text-center text-xs text-slate-400 pt-2">*Nama & sekolah contoh ganti dengan testimoni klien
                 asli.</p>
         </div>
     </section>
@@ -1839,7 +3409,7 @@
                         </svg></button>
                     <div class="faq-body">
                         <p class="px-5 pb-5 text-sm text-slate-600">Data pendaftar tahun sebelumnya dapat kami bantu
-                            impor. Setup awal — kuota, jalur, formulir — disiapkan bersama tim Anda, bukan dikerjakan
+                            impor. Setup awal kuota, jalur, formulir disiapkan bersama tim Anda, bukan dikerjakan
                             sendiri.</p>
                     </div>
                 </div>
@@ -1894,7 +3464,7 @@
                         </svg></button>
                     <div class="faq-body">
                         <p class="px-5 pb-5 text-sm text-slate-600">Bergantung pada jumlah unit dan kebutuhan fitur.
-                            Kami jelaskan skema yang paling sesuai saat sesi demo — tanpa biaya, tanpa komitmen.</p>
+                            Kami jelaskan skema yang paling sesuai saat sesi demo tanpa biaya, tanpa komitmen.</p>
                     </div>
                 </div>
             </div>
@@ -1908,7 +3478,7 @@
                 <p class="text-sm font-bold tracking-widest text-primary">10 · KONTAK</p>
                 <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Mari Bicarakan PPDB
                     Sekolah Anda.</h2>
-                <p class="mt-4 text-slate-600 text-lg">Isi formulir atau hubungi langsung — tim Tujuh Sembilan merespons
+                <p class="mt-4 text-slate-600 text-lg">Isi formulir atau hubungi langsung tim Tujuh Sembilan merespons
                     dalam 1×24 jam kerja.</p>
             </div>
 
@@ -1926,13 +3496,13 @@
                         </span>
                         <div>
                             <p class="text-xs text-slate-500 mb-0.5">WhatsApp</p>
-                            <p class="font-bold text-slate-900 group-hover:text-primary transition">+62 812-3456-7890</p>
+                            <p class="font-bold text-slate-900 group-hover:text-primary transition">+62 812-3456-7890
+                            </p>
                         </div>
                     </a>
                     <a href="mailto:bima@tujuhsembilan.id"
                         class="flex items-start gap-4 bg-white border border-slate-100 rounded-2xl p-5 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/60 transition group">
-                        <span
-                            class="shrink-0 w-11 h-11 rounded-xl bg-primary/10 text-primary grid place-items-center">
+                        <span class="shrink-0 w-11 h-11 rounded-xl bg-primary/10 text-primary grid place-items-center">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
@@ -1940,7 +3510,8 @@
                         </span>
                         <div>
                             <p class="text-xs text-slate-500 mb-0.5">Email</p>
-                            <p class="font-bold text-slate-900 group-hover:text-primary transition">bima@tujuhsembilan.id
+                            <p class="font-bold text-slate-900 group-hover:text-primary transition">
+                                bima@tujuhsembilan.id
                             </p>
                         </div>
                     </a>
@@ -1956,7 +3527,7 @@
                         </span>
                         <div>
                             <p class="text-xs text-slate-500 mb-0.5">Kantor</p>
-                            <p class="font-bold text-slate-900">Jakarta, Indonesia — melayani se-Indonesia</p>
+                            <p class="font-bold text-slate-900">Jakarta, Indonesia melayani se-Indonesia</p>
                         </div>
                     </div>
                     <div
@@ -1977,7 +3548,7 @@
                 <!-- Form -->
                 <div class="reveal bg-white rounded-2xl border border-slate-100 p-7 shadow-lg shadow-slate-200/40">
                     <h3 class="text-xl font-extrabold text-slate-900 mb-1">Diskusi Masalah Sekolah Anda</h3>
-                    <p class="text-sm text-slate-600 mb-6">Ceritakan situasi PPDB sekolah Anda — kami balas dengan
+                    <p class="text-sm text-slate-600 mb-6">Ceritakan situasi PPDB sekolah Anda kami balas dengan
                         rekomendasi solusi, bukan sekadar brosur.</p>
                     <form id="contactForm" class="space-y-4">
                         <div class="grid sm:grid-cols-2 gap-4">
@@ -1999,7 +3570,8 @@
                                     class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nomor WhatsApp *</label>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nomor WhatsApp
+                                    *</label>
                                 <input type="tel" placeholder="08xx-xxxx-xxxx" required
                                     class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition">
                             </div>
@@ -2009,7 +3581,8 @@
                                 Pendaftar</label>
                             <select
                                 class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition text-slate-700">
-                                <option>< 300 pendaftar</option>
+                                <option>
+                                    < 300 pendaftar</option>
                                 <option selected>300 – 800 pendaftar</option>
                                 <option>800 – 2.000 pendaftar</option>
                                 <option>> 2.000 pendaftar</option>
@@ -2028,7 +3601,8 @@
                             Kirim & Jadwalkan Diskusi
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5"
                                 viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                             </svg>
                         </button>
                         <div id="contactSuccess"
@@ -2055,7 +3629,7 @@
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Siapkan PPDB Tahun Ini Lebih Awal.
             </h2>
             <p class="mt-4 text-lg text-white/80 max-w-xl mx-auto">Lihat langsung cara BIMA bekerja untuk sekolah dan
-                yayasan Anda — demo 30 menit, tanpa komitmen.</p>
+                yayasan Anda demo 30 menit, tanpa komitmen.</p>
             <div class="mt-8 flex flex-wrap justify-center gap-3">
                 <a href="mailto:halo@tujuhsembilan.id" data-magnetic
                     class="inline-flex items-center bg-sun hover:bg-sun/90 text-slate-900 font-bold rounded-xl px-8 py-4 transition shadow-xl">Jadwalkan
@@ -2075,7 +3649,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
             <div>
                 <a href="#hero" class="flex items-center gap-2.5">
-                    <img src="logotujuhsembilan.png" alt="Tujuh Sembilan Logo" class="h-10 w-auto object-contain brightness-0 invert">
+                    <img src="logotujuhsembilan.png" alt="Tujuh Sembilan Logo"
+                        class="h-10 w-auto object-contain brightness-0 invert">
                 </a>
                 <p class="mt-4 text-sm">Platform PPDB digital untuk sekolah dan yayasan di Indonesia.</p>
             </div>
@@ -2475,11 +4050,11 @@
                     setTimeout(() => { el.classList.add('toast-out'); setTimeout(() => el.remove(), 400); }, 4200);
                 }
                 const feed = [
-                    ['check', 'Berkas terverifikasi', 'Rizky A. — SMP · Jalur Zonasi'],
-                    ['user', 'Pendaftar baru masuk', 'Ananda P. — SMA · Jalur Prestasi'],
-                    ['bell', 'Pengumuman terjadwal', 'Gelombang 1 — Jumat, 08.00 WIB'],
-                    ['check', 'Pembayaran terkonfirmasi', 'Salsabila D. — SD · Jalur Umum'],
-                    ['user', 'Pendaftar baru masuk', 'Fajar R. — SMA · Jalur Afirmasi']
+                    ['check', 'Berkas terverifikasi', 'Rizky A.  SMP · Jalur Zonasi'],
+                    ['user', 'Pendaftar baru masuk', 'Ananda P.  SMA · Jalur Prestasi'],
+                    ['bell', 'Pengumuman terjadwal', 'Gelombang 1  Jumat, 08.00 WIB'],
+                    ['check', 'Pembayaran terkonfirmasi', 'Salsabila D.  SD · Jalur Umum'],
+                    ['user', 'Pendaftar baru masuk', 'Fajar R.  SMA · Jalur Afirmasi']
                 ];
                 let fi = 0;
                 setTimeout(() => {
@@ -2491,126 +4066,126 @@
                 }, 6000);
             })();
 
-            /* ========== Portfolio Modal Logic ========== */
-            const portoData = [
-                {
-                    title: 'Yayasan Nusantara Jaya',
-                    badge: 'YAYASAN · 4 UNIT',
-                    location: 'Surabaya, Jawa Timur',
-                    img: 'img/school-1.jpg',
-                    desc: 'Yayasan Nusantara Jaya mengelola 4 unit sekolah (SD, SMP, SMA, SMK) dengan total kapasitas 1.240 kursi per tahun ajaran. Sebelum menggunakan BIMA, setiap unit menjalankan PPDB sendiri-sendiri dengan formulir kertas dan spreadsheet yang berbeda-beda.',
-                    challenge: 'Data pendaftar tersebar di 4 unit, tidak ada laporan konsolidasi, dan kuota sering salah karena input manual.',
-                    solution: 'BIMA menyatukan seluruh proses PPDB ke dalam satu dashboard yayasan. Setiap unit memiliki portal pendaftaran sendiri, tapi data teragregasi secara real-time di level yayasan.',
-                    metrics: [
-                        { label: 'Pendaftar Online', value: '1.240', icon: '👥' },
-                        { label: 'Waktu Verifikasi', value: '-85%', icon: '⚡' },
-                        { label: 'Antrian Fisik', value: '-90%', icon: '📉' },
-                        { label: 'Kepuasan', value: '4.9/5', icon: '⭐' }
-                    ],
-                    features: ['Dashboard multi-unit', 'Kuota real-time per jalur', 'Laporan konsolidasi otomatis', 'Portal pendaftaran per unit'],
-                    quote: '"Sekarang kami bisa memonitor kuota semua unit dari satu layar. Tidak perlu lagi telepon ke tiap sekolah."',
-                    quoter: 'Hadi S. — Direktur Yayasan'
-                },
-                {
-                    title: 'SMPN 5 Surabaya',
-                    badge: 'NEGERI',
-                    location: 'Surabaya, Jawa Timur',
-                    img: 'img/school-2.jpg',
-                    desc: 'SMPN 5 Surabaya adalah sekolah negeri favorit dengan 3 jalur penerimaan: zonasi, prestasi, dan afirmasi. Setiap tahun mereka menerima ratusan pendaftar yang harus diproses secara paralel tanpa bentrok data.',
-                    challenge: 'Proses seleksi 3 jalur berjalan manual dan sering bentrok. Panitia kewalahan mencocokkan data dan mengurutkan peringkat.',
-                    solution: 'BIMA mengotomasi seleksi berdasarkan jarak domisili (zonasi), nilai rapor (prestasi), dan SKTM (afirmasi). Sistem menghitung peringkat dan menentukan kelulusan secara otomatis.',
-                    metrics: [
-                        { label: 'Pendaftar', value: '867', icon: '👥' },
-                        { label: 'Waktu Verifikasi', value: '-75%', icon: '⚡' },
-                        { label: 'Error Data', value: '0%', icon: '✅' },
-                        { label: 'Kepuasan', value: '4.8/5', icon: '⭐' }
-                    ],
-                    features: ['Seleksi multi-jalur otomatis', 'Peringkat real-time', 'Verifikasi berkas digital', 'Pengumuman online per jalur'],
-                    quote: '"Zonasi dan prestasi berjalan paralel tanpa bentrok. Sebelumnya ini mimpi buruk panitia setiap tahun."',
-                    quoter: 'Dewi A. — Wakil Kepala Sekolah'
-                },
-                {
-                    title: 'SD Islam Al-Hidayah',
-                    badge: 'SWASTA',
-                    location: 'Bandung, Jawa Barat',
-                    img: 'img/school-3.jpg',
-                    desc: 'SD Islam Al-Hidayah adalah sekolah swasta dengan 312 kuota per tahun. Sebelumnya, pendaftaran dilakukan melalui formulir kertas yang harus diambil di sekolah, menyulitkan orang tua yang bekerja.',
-                    challenge: 'Formulir kertas harus diambil fisik, berkas sering hilang, dan orang tua harus bolak-balik ke sekolah untuk mengecek status.',
-                    solution: 'BIMA memungkinkan pendaftaran 100% online via HP. Orang tua bisa mengisi formulir, upload berkas, dan cek status dari mana saja.',
-                    metrics: [
-                        { label: 'Pendaftar Online', value: '312', icon: '👥' },
-                        { label: 'Migrasi', value: '2 minggu', icon: '🚀' },
-                        { label: 'Berkas Hilang', value: '0', icon: '📂' },
-                        { label: 'Kepuasan', value: '5.0/5', icon: '⭐' }
-                    ],
-                    features: ['Pendaftaran mobile-friendly', 'Upload berkas dari HP', 'Tracking status real-time', 'Notifikasi WhatsApp otomatis'],
-                    quote: '"Orang tua sangat senang bisa daftar dari HP. Tidak perlu izin kerja lagi untuk ke sekolah."',
-                    quoter: 'Siti N. — Kepala Sekolah'
-                },
-                {
-                    title: 'SMA Harapan Bangsa',
-                    badge: 'SWASTA',
-                    location: 'Jakarta Selatan',
-                    img: 'img/school-4.jpg',
-                    desc: 'SMA Harapan Bangsa menggunakan SIA (Sistem Informasi Akademik) internal yang sudah berjalan bertahun-tahun. Tantangan terbesar adalah memastikan data PPDB langsung terintegrasi ke SIA tanpa input ulang.',
-                    challenge: 'Data siswa baru harus diinput ulang dari formulir PPDB ke SIA sekolah, memakan waktu 2 minggu dan sering terjadi typo.',
-                    solution: 'BIMA diintegrasikan langsung dengan SIA sekolah via API. Siswa yang diterima otomatis masuk ke database akademik lengkap dengan data orang tua, berkas, dan jalur masuk.',
-                    metrics: [
-                        { label: 'Pendaftar', value: '534', icon: '👥' },
-                        { label: 'Input Ulang', value: '0 jam', icon: '⏱️' },
-                        { label: 'Typo/Error', value: '0%', icon: '✅' },
-                        { label: 'Kepuasan', value: '4.7/5', icon: '⭐' }
-                    ],
-                    features: ['Integrasi API ke SIA', 'Sinkronisasi data otomatis', 'Mapping field kustom', 'Validasi data real-time'],
-                    quote: '"Dulu tim TU butuh dua minggu untuk input data siswa baru. Sekarang? Klik satu tombol, selesai."',
-                    quoter: 'Arief W. — Kepala TU'
-                },
-                {
-                    title: 'SMK Telkom Malang',
-                    badge: 'SWASTA',
-                    location: 'Malang, Jawa Timur',
-                    img: 'img/school-5.jpg',
-                    desc: 'SMK Telkom Malang memiliki 5 jurusan teknik dengan kapasitas dan persyaratan berbeda-beda. Seleksi dilakukan berdasarkan nilai rapor mata pelajaran yang relevan untuk setiap jurusan.',
-                    challenge: 'Seleksi 5 jurusan dengan bobot nilai berbeda dilakukan manual di spreadsheet. Sering terjadi kesalahan dan protes dari orang tua.',
-                    solution: 'BIMA mengotomasi seluruh proses seleksi. Admin cukup mengatur bobot nilai per jurusan, dan sistem menghitung peringkat serta mengumumkan hasil secara otomatis.',
-                    metrics: [
-                        { label: 'Pendaftar', value: '1.580', icon: '👥' },
-                        { label: 'Jurusan', value: '5', icon: '🎓' },
-                        { label: 'Protes', value: '-95%', icon: '📉' },
-                        { label: 'Kepuasan', value: '4.9/5', icon: '⭐' }
-                    ],
-                    features: ['Seleksi per jurusan otomatis', 'Bobot nilai kustom', 'Pemerataan kuota jurusan', 'Laporan statistik per jurusan'],
-                    quote: '"Protes orang tua turun drastis karena semua proses transparan. Mereka bisa lihat skor dan peringkat anaknya."',
-                    quoter: 'Bambang T. — Kepala Jurusan'
-                },
-                {
-                    title: 'Yayasan Bina Ilmu',
-                    badge: 'YAYASAN · 6 UNIT',
-                    location: 'Yogyakarta',
-                    img: 'img/school-6.jpg',
-                    desc: 'Yayasan Bina Ilmu menaungi 6 unit sekolah dari TK hingga SMA. Dengan lebih dari 2.000 pendaftar per tahun, mereka membutuhkan sistem monitoring kuota yang akurat dan laporan konsolidasi untuk rapat yayasan.',
-                    challenge: 'Tidak ada cara mudah untuk melihat progres PPDB semua unit secara bersamaan. Laporan untuk rapat yayasan dibuat manual dan sering terlambat.',
-                    solution: 'Dashboard yayasan BIMA menampilkan kuota real-time, progres pendaftaran, dan tren dari semua unit. Laporan konsolidasi bisa di-generate kapan saja.',
-                    metrics: [
-                        { label: 'Pendaftar', value: '2.100', icon: '👥' },
-                        { label: 'Unit Sekolah', value: '6', icon: '🏫' },
-                        { label: 'Laporan', value: 'Real-time', icon: '📊' },
-                        { label: 'Kepuasan', value: '4.8/5', icon: '⭐' }
-                    ],
-                    features: ['Dashboard yayasan terpusat', 'Monitoring kuota 6 unit', 'Laporan konsolidasi otomatis', 'Analitik tren tahunan'],
-                    quote: '"Rapat yayasan sekarang jauh lebih produktif. Data sudah siap, tinggal diskusi strategi."',
-                    quoter: 'Dr. Haryanto — Ketua Yayasan'
-                }
-            ];
+        /* ========== Portfolio Modal Logic ========== */
+        const portoData = [
+            {
+                title: 'Yayasan Nusantara Jaya',
+                badge: 'YAYASAN · 4 UNIT',
+                location: 'Surabaya, Jawa Timur',
+                img: 'img/school-1.jpg',
+                desc: 'Yayasan Nusantara Jaya mengelola 4 unit sekolah (SD, SMP, SMA, SMK) dengan total kapasitas 1.240 kursi per tahun ajaran. Sebelum menggunakan BIMA, setiap unit menjalankan PPDB sendiri-sendiri dengan formulir kertas dan spreadsheet yang berbeda-beda.',
+                challenge: 'Data pendaftar tersebar di 4 unit, tidak ada laporan konsolidasi, dan kuota sering salah karena input manual.',
+                solution: 'BIMA menyatukan seluruh proses PPDB ke dalam satu dashboard yayasan. Setiap unit memiliki portal pendaftaran sendiri, tapi data teragregasi secara real-time di level yayasan.',
+                metrics: [
+                    { label: 'Pendaftar Online', value: '1.240', icon: '👥' },
+                    { label: 'Waktu Verifikasi', value: '-85%', icon: '⚡' },
+                    { label: 'Antrian Fisik', value: '-90%', icon: '📉' },
+                    { label: 'Kepuasan', value: '4.9/5', icon: '⭐' }
+                ],
+                features: ['Dashboard multi-unit', 'Kuota real-time per jalur', 'Laporan konsolidasi otomatis', 'Portal pendaftaran per unit'],
+                quote: '"Sekarang kami bisa memonitor kuota semua unit dari satu layar. Tidak perlu lagi telepon ke tiap sekolah."',
+                quoter: 'Hadi S.  Direktur Yayasan'
+            },
+            {
+                title: 'SMPN 5 Surabaya',
+                badge: 'NEGERI',
+                location: 'Surabaya, Jawa Timur',
+                img: 'img/school-2.jpg',
+                desc: 'SMPN 5 Surabaya adalah sekolah negeri favorit dengan 3 jalur penerimaan: zonasi, prestasi, dan afirmasi. Setiap tahun mereka menerima ratusan pendaftar yang harus diproses secara paralel tanpa bentrok data.',
+                challenge: 'Proses seleksi 3 jalur berjalan manual dan sering bentrok. Panitia kewalahan mencocokkan data dan mengurutkan peringkat.',
+                solution: 'BIMA mengotomasi seleksi berdasarkan jarak domisili (zonasi), nilai rapor (prestasi), dan SKTM (afirmasi). Sistem menghitung peringkat dan menentukan kelulusan secara otomatis.',
+                metrics: [
+                    { label: 'Pendaftar', value: '867', icon: '👥' },
+                    { label: 'Waktu Verifikasi', value: '-75%', icon: '⚡' },
+                    { label: 'Error Data', value: '0%', icon: '✅' },
+                    { label: 'Kepuasan', value: '4.8/5', icon: '⭐' }
+                ],
+                features: ['Seleksi multi-jalur otomatis', 'Peringkat real-time', 'Verifikasi berkas digital', 'Pengumuman online per jalur'],
+                quote: '"Zonasi dan prestasi berjalan paralel tanpa bentrok. Sebelumnya ini mimpi buruk panitia setiap tahun."',
+                quoter: 'Dewi A.  Wakil Kepala Sekolah'
+            },
+            {
+                title: 'SD Islam Al-Hidayah',
+                badge: 'SWASTA',
+                location: 'Bandung, Jawa Barat',
+                img: 'img/school-3.jpg',
+                desc: 'SD Islam Al-Hidayah adalah sekolah swasta dengan 312 kuota per tahun. Sebelumnya, pendaftaran dilakukan melalui formulir kertas yang harus diambil di sekolah, menyulitkan orang tua yang bekerja.',
+                challenge: 'Formulir kertas harus diambil fisik, berkas sering hilang, dan orang tua harus bolak-balik ke sekolah untuk mengecek status.',
+                solution: 'BIMA memungkinkan pendaftaran 100% online via HP. Orang tua bisa mengisi formulir, upload berkas, dan cek status dari mana saja.',
+                metrics: [
+                    { label: 'Pendaftar Online', value: '312', icon: '👥' },
+                    { label: 'Migrasi', value: '2 minggu', icon: '🚀' },
+                    { label: 'Berkas Hilang', value: '0', icon: '📂' },
+                    { label: 'Kepuasan', value: '5.0/5', icon: '⭐' }
+                ],
+                features: ['Pendaftaran mobile-friendly', 'Upload berkas dari HP', 'Tracking status real-time', 'Notifikasi WhatsApp otomatis'],
+                quote: '"Orang tua sangat senang bisa daftar dari HP. Tidak perlu izin kerja lagi untuk ke sekolah."',
+                quoter: 'Siti N.  Kepala Sekolah'
+            },
+            {
+                title: 'SMA Harapan Bangsa',
+                badge: 'SWASTA',
+                location: 'Jakarta Selatan',
+                img: 'img/school-4.jpg',
+                desc: 'SMA Harapan Bangsa menggunakan SIA (Sistem Informasi Akademik) internal yang sudah berjalan bertahun-tahun. Tantangan terbesar adalah memastikan data PPDB langsung terintegrasi ke SIA tanpa input ulang.',
+                challenge: 'Data siswa baru harus diinput ulang dari formulir PPDB ke SIA sekolah, memakan waktu 2 minggu dan sering terjadi typo.',
+                solution: 'BIMA diintegrasikan langsung dengan SIA sekolah via API. Siswa yang diterima otomatis masuk ke database akademik lengkap dengan data orang tua, berkas, dan jalur masuk.',
+                metrics: [
+                    { label: 'Pendaftar', value: '534', icon: '👥' },
+                    { label: 'Input Ulang', value: '0 jam', icon: '⏱️' },
+                    { label: 'Typo/Error', value: '0%', icon: '✅' },
+                    { label: 'Kepuasan', value: '4.7/5', icon: '⭐' }
+                ],
+                features: ['Integrasi API ke SIA', 'Sinkronisasi data otomatis', 'Mapping field kustom', 'Validasi data real-time'],
+                quote: '"Dulu tim TU butuh dua minggu untuk input data siswa baru. Sekarang? Klik satu tombol, selesai."',
+                quoter: 'Arief W.  Kepala TU'
+            },
+            {
+                title: 'SMK Telkom Malang',
+                badge: 'SWASTA',
+                location: 'Malang, Jawa Timur',
+                img: 'img/school-5.jpg',
+                desc: 'SMK Telkom Malang memiliki 5 jurusan teknik dengan kapasitas dan persyaratan berbeda-beda. Seleksi dilakukan berdasarkan nilai rapor mata pelajaran yang relevan untuk setiap jurusan.',
+                challenge: 'Seleksi 5 jurusan dengan bobot nilai berbeda dilakukan manual di spreadsheet. Sering terjadi kesalahan dan protes dari orang tua.',
+                solution: 'BIMA mengotomasi seluruh proses seleksi. Admin cukup mengatur bobot nilai per jurusan, dan sistem menghitung peringkat serta mengumumkan hasil secara otomatis.',
+                metrics: [
+                    { label: 'Pendaftar', value: '1.580', icon: '👥' },
+                    { label: 'Jurusan', value: '5', icon: '🎓' },
+                    { label: 'Protes', value: '-95%', icon: '📉' },
+                    { label: 'Kepuasan', value: '4.9/5', icon: '⭐' }
+                ],
+                features: ['Seleksi per jurusan otomatis', 'Bobot nilai kustom', 'Pemerataan kuota jurusan', 'Laporan statistik per jurusan'],
+                quote: '"Protes orang tua turun drastis karena semua proses transparan. Mereka bisa lihat skor dan peringkat anaknya."',
+                quoter: 'Bambang T.  Kepala Jurusan'
+            },
+            {
+                title: 'Yayasan Bina Ilmu',
+                badge: 'YAYASAN · 6 UNIT',
+                location: 'Yogyakarta',
+                img: 'img/school-6.jpg',
+                desc: 'Yayasan Bina Ilmu menaungi 6 unit sekolah dari TK hingga SMA. Dengan lebih dari 2.000 pendaftar per tahun, mereka membutuhkan sistem monitoring kuota yang akurat dan laporan konsolidasi untuk rapat yayasan.',
+                challenge: 'Tidak ada cara mudah untuk melihat progres PPDB semua unit secara bersamaan. Laporan untuk rapat yayasan dibuat manual dan sering terlambat.',
+                solution: 'Dashboard yayasan BIMA menampilkan kuota real-time, progres pendaftaran, dan tren dari semua unit. Laporan konsolidasi bisa di-generate kapan saja.',
+                metrics: [
+                    { label: 'Pendaftar', value: '2.100', icon: '👥' },
+                    { label: 'Unit Sekolah', value: '6', icon: '🏫' },
+                    { label: 'Laporan', value: 'Real-time', icon: '📊' },
+                    { label: 'Kepuasan', value: '4.8/5', icon: '⭐' }
+                ],
+                features: ['Dashboard yayasan terpusat', 'Monitoring kuota 6 unit', 'Laporan konsolidasi otomatis', 'Analitik tren tahunan'],
+                quote: '"Rapat yayasan sekarang jauh lebih produktif. Data sudah siap, tinggal diskusi strategi."',
+                quoter: 'Dr. Haryanto  Ketua Yayasan'
+            }
+        ];
 
-            const portoModal = document.getElementById('portoModal');
-            const portoModalTitle = document.getElementById('portoModalTitle');
-            const portoModalBody = document.getElementById('portoModalBody');
+        const portoModal = document.getElementById('portoModal');
+        const portoModalTitle = document.getElementById('portoModalTitle');
+        const portoModalBody = document.getElementById('portoModalBody');
 
-            function openPorto(idx) {
-                const d = portoData[idx];
-                portoModalTitle.textContent = d.title;
-                portoModalBody.innerHTML = `
+        function openPorto(idx) {
+            const d = portoData[idx];
+            portoModalTitle.textContent = d.title;
+            portoModalBody.innerHTML = `
                     <div class="modal-img-wrap mb-5">
                         <img src="${d.img}" alt="Foto ${d.title}" class="w-full h-56 object-cover rounded-xl" loading="lazy">
                     </div>
@@ -2660,38 +4235,101 @@
                     <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
                         <svg class="w-8 h-8 text-slate-300 mb-2" fill="currentColor" viewBox="0 0 24 24"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
                         <p class="text-slate-700 italic leading-relaxed">${d.quote}</p>
-                        <p class="mt-3 font-bold text-slate-900 text-sm">— ${d.quoter}</p>
+                        <p class="mt-3 font-bold text-slate-900 text-sm"> ${d.quoter}</p>
                     </div>
                 `;
-                document.body.style.overflow = 'hidden';
-                portoModal.classList.add('is-open');
-            }
+            document.body.style.overflow = 'hidden';
+            portoModal.classList.add('is-open');
+        }
 
-            function closePorto() {
-                portoModal.classList.remove('is-open');
-                document.body.style.overflow = '';
-            }
+        function closePorto() {
+            portoModal.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
 
-            portoModal.addEventListener('click', e => { if (e.target === portoModal) closePorto(); });
-            document.addEventListener('keydown', e => { if (e.key === 'Escape' && portoModal.classList.contains('is-open')) closePorto(); });
+        portoModal.addEventListener('click', e => { if (e.target === portoModal) closePorto(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && portoModal.classList.contains('is-open')) closePorto(); });
 
-            /* ========== Contact Form ========== */
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', e => {
-                    e.preventDefault();
-                    const btn = contactForm.querySelector('button[type="submit"]');
-                    btn.disabled = true;
-                    btn.innerHTML = '<span class="inline-block w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span> Mengirim...';
-                    setTimeout(() => {
-                        contactForm.classList.add('hidden');
-                        document.getElementById('contactSuccess').classList.remove('hidden');
-                        document.getElementById('contactSuccess').classList.add('flex');
-                    }, 1200);
-                });
-            }
+        /* ========== Contact Form ========== */
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', e => {
+                e.preventDefault();
+                const btn = contactForm.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.innerHTML = '<span class="inline-block w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span> Mengirim...';
+                setTimeout(() => {
+                    contactForm.classList.add('hidden');
+                    document.getElementById('contactSuccess').classList.remove('hidden');
+                    document.getElementById('contactSuccess').classList.add('flex');
+                }, 1200);
+            });
+        }
     </script>
 
+
+    <script>
+
+        /* ===== FLOW CHIPS ===== */
+        const flowChips = [...document.querySelectorAll('.flow-chip')];
+        let flowIdx = 0;
+        if (flowChips.length) setInterval(() => {
+            flowChips[flowIdx % flowChips.length].classList.remove('active');
+            flowIdx++;
+            flowChips[flowIdx % flowChips.length].classList.add('active');
+        }, 2200);
+
+        /* ===== HOOK + BANNER ===== */
+        const hookCombo = document.getElementById('hookCombo');
+        const hookItems = [...document.querySelectorAll('.hook-item')];
+        const banner = document.getElementById('banner');
+        const bSlides = [...document.querySelectorAll('.banner-slide')];
+        const bDotsWrap = document.getElementById('bDots');
+        const SLIDE_DUR = 6500;
+        let bCur = 0, bTimer = null, bPaused = false;
+
+        if (bDotsWrap) {
+            bSlides.forEach((_, i) => {
+                const d = document.createElement('button');
+                d.setAttribute('aria-label', 'Slide ' + (i + 1));
+                d.addEventListener('click', () => setSlide(i, true));
+                bDotsWrap.appendChild(d);
+            });
+            const bDots = [...bDotsWrap.children];
+
+            function setSlide(i, fromUser) {
+                bCur = (i + bSlides.length) % bSlides.length;
+                hookItems.forEach((h, j) => h.classList.toggle('active', j === bCur));
+                bSlides.forEach((s, j) => s.classList.toggle('active', j === bCur));
+                bDots.forEach((d, j) => d.classList.toggle('active', j === bCur));
+                if (fromUser || window.innerWidth <= 920) {
+                    hookItems[bCur].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+                restartAuto();
+            }
+            function restartAuto() {
+                clearTimeout(bTimer);
+                if (!bPaused) bTimer = setTimeout(() => setSlide(bCur + 1), SLIDE_DUR);
+            }
+            hookItems.forEach((h, i) => {
+                h.addEventListener('mouseenter', () => setSlide(i, true));
+                h.addEventListener('click', () => setSlide(i, true));
+            });
+            document.getElementById('bNext')?.addEventListener('click', () => setSlide(bCur + 1, true));
+            document.getElementById('bPrev')?.addEventListener('click', () => setSlide(bCur - 1, true));
+            hookCombo?.addEventListener('mouseenter', () => { bPaused = true; clearTimeout(bTimer); hookCombo.classList.add('paused'); });
+            hookCombo?.addEventListener('mouseleave', () => { bPaused = false; hookCombo.classList.remove('paused'); restartAuto(); });
+            let bTouchX = null;
+            banner?.addEventListener('touchstart', e => bTouchX = e.touches[0].clientX, { passive: true });
+            banner?.addEventListener('touchend', e => {
+                if (bTouchX === null) return;
+                const dx = e.changedTouches[0].clientX - bTouchX;
+                if (Math.abs(dx) > 50) setSlide(bCur + (dx < 0 ? 1 : -1), true);
+                bTouchX = null;
+            }, { passive: true });
+            setSlide(0);
+        }
+    </script>
 </body>
 
 </html>
