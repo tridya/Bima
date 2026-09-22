@@ -4302,7 +4302,7 @@
                 hookItems.forEach((h, j) => h.classList.toggle('active', j === bCur));
                 bSlides.forEach((s, j) => s.classList.toggle('active', j === bCur));
                 bDots.forEach((d, j) => d.classList.toggle('active', j === bCur));
-                if (fromUser || window.innerWidth <= 920) {
+                if (fromUser) {
                     hookItems[bCur].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }
                 restartAuto();
